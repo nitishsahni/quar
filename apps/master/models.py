@@ -72,6 +72,11 @@ class Post(models.Model):
 
 
 class Apply(models.Model):
+    qr = 'QR'
+    wc = 'WC'
+    ap = 'AP'
+    rj = "RJ"
+    statusChoices = [(qr, 'Quar.in'), (wc, 'With company'), (ap, 'Approved'), (rj, 'Rejected')]
     class Meta:
         verbose_name_plural = "Applications"
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -80,7 +85,7 @@ class Apply(models.Model):
     cover = models.FileField()
     skills = models.TextField(max_length=500)
     presence = models.URLField()
-    approved = models.BooleanField()
+    status = models.CharField(max_length=2, choices=statusChoices, default='QR')
 
     def __str__(self):
         return str(self.student) + " | " + str(self.post) + " | " + str(self.post.company)

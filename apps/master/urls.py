@@ -19,10 +19,14 @@ urlpatterns = [
     path('login', views.login, name="login"),
     # the post form page
     path('post', views.post, name="post"),
-    # url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
-    # url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
+
+    path('login', auth_views.LoginView, {'template_name': 'signups/logIn.html'}, name='login'),
+
+    path('logout', auth_views.LogoutView, {'next_page': 'home.html'}, name='logout'),
+
     path('signup', views.signup, name='signup'),
-    path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.activate, name='activate'),
 
 ]

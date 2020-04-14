@@ -33,7 +33,9 @@
     <div class="col-lg-4 col-xl-4">&nbsp;</div>
     <div class="col-lg-4"><h2>Log In</h2>
       <br>
-		<form>
+		<form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
 	<div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="maclewin@supermail.com">
