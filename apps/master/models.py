@@ -1,0 +1,86 @@
+from django.db import models
+from django import forms
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import AbstractUser
+
+
+class Student(models.Model):
+    hs = 'HS'
+    ba = 'BA'
+    ma = 'MA'
+    yearSchoolChoices = [(hs, 'High School'), (ba, 'Bachelors'), (ma, 'Masters')]
+
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    highSchool = models.CharField(verbose_name="High School", max_length=50)
+    year = models.CharField(max_length=2, choices=yearSchoolChoices)
+    dob = models.DateField()
+    phone = models.BigIntegerField()
+
+    def __str__(self):
+        return self.name
+
+
+class Company(models.Model):
+    class Meta:
+        verbose_name_plural = "Companies"
+
+    industryChoices = [('FA', "Finance and Accounting"),
+                       ('MA', "Marketing")
+                        ,('DE', "Design")
+                        ,('DS', "Data Analytics and Stats")
+                        ,('PS', "Programming and Software")
+                        ,('SC', "Supply Chain")
+                        ,('FS', "Fashion")
+                        ,('CO', "Communications")
+                        ,('FB', "Food and Beverage")
+                        ,('RE', "Research")
+                       ]
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, verbose_name="Company name")
+    email = models.EmailField()
+    industry = models.CharField(verbose_name="Industry", max_length=2, choices=industryChoices)
+    typeOfBusiness = models.CharField(max_length=50, verbose_name="Type of Business")
+    website = models.URLField()
+    phone = models.BigIntegerField()
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    def __str__(self):
+        return self.name
+
+
+class Post(models.Model):
+    hs = 'HS'
+    ba = 'BA'
+    ma = 'MA'
+    yearSchoolChoices = [(hs, 'High School'), (ba, 'Bachelors'), (ma, 'Masters')]
+
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    duration = models.CharField(max_length=50)
+    location = models.CharField(default="Remote", max_length=50)
+    startDate = models.DateField(verbose_name="Start Date")
+    qualification = models.CharField(max_length=2, choices=yearSchoolChoices)
+    stipend = models.BooleanField()
+    description = models.TextField(max_length=2000)
+    requirements = models.TextField(max_length=2000)
+
+    def __str__(self):
+        return self.title
+
+
+class Apply(models.Model):
+    class Meta:
+        verbose_name_plural = "Applications"
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    resume = models.FileField()
+    cover = models.FileField()
+    skills = models.TextField(max_length=500)
+    presence = models.URLField()
+    approved = models.BooleanField()
+
+    def __str__(self):
+        return str(self.student) + " | " + str(self.post) + " | " + str(self.post.company)
