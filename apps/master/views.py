@@ -17,9 +17,6 @@ from django.core.mail import EmailMessage
 def home(request):
     return render(request, 'home.html')
 
-def apply(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    return render(request, 'apply.html', {'post': post})
 
 #@login_required
 def post(request):
@@ -32,6 +29,18 @@ def post(request):
     else:
         form = PostForm()
     return render(request, 'company/post.html', {'form': form})
+
+def apply(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    form = ApplyForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            application = form.save(commit=False)
+            application.save()
+            return HttpResponse('Thank you for applying')
+    else:
+        form = ApplyForm()
+    return render(request, 'student/apply.html', {'form': form, 'post': post})
 
 def internships(request):
     latest_internship_list = Post.objects.all().order_by("-pk")[:5]

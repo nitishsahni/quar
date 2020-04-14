@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quar.in | About</title>
     <!-- Bootstrap -->
-    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-4.4.1.css' %} " rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -95,35 +96,10 @@
 </div>
 				<div class="col-md-6 col-sm-12">
     </div>
+      <br>
+      <br>
+      <div align="center">Get in touch with us at <u>quarindia@gmail.com</u></div>
     <hr>
-      <h2 id="contactID">Contact / <a href="">FAQs&nbsp;</a></h2>
-      <hr>
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8  col-12 jumbotron">
-            <form>
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Mac Lewin">
-              </div>
-              <div class="form-group">
-                <label for="email">E-Mail</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="maclewin@supermail.com" aria-describedby="emailHelp">
-                <span id="emailHelp" class="form-text text-muted" style="display: none;">Please enter a valid e-mail address.</span>
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea rows="10" cols="100" class="form-control" id="message" name="message" placeholder="Message" aria-describedby="messageHelp"></textarea>
-                <span id="messageHelp" class="form-text text-muted" style="display: none;">Please enter a message.</span>
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <hr>
 </div>
 	  <div class="text-white bg-dark p-4">
       <div class="row">

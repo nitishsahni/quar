@@ -43,7 +43,9 @@ class PostForm(forms.ModelForm):
             'requirements' : forms.Textarea(attrs={'class': 'form-control'}),
         }
         """
-class PostForm(forms.ModelForm):
+
+
+class ApplyForm(forms.ModelForm):
     class Meta:
-        model = Post
+        model = Apply
         fields = "__all__"
