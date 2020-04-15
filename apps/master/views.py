@@ -50,14 +50,14 @@ def apply(request, post_id):
     return render(request, 'student/apply.html', {'form': form, 'post': post})
 
 def internships(request):
-    latest_internship_list = Post.objects.all().order_by("-pk")[:5]
+    latest_internship_list = Post.objects.all().order_by("-pk")
     context = {'latest_internship_list': latest_internship_list}
     return render(request, 'student/internships.html', context)
 
 
 def singleInternship(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    return render(request, 'singleInternship.html', {'post': post})
+    return render(request, 'student/singleInternship.html', {'post': post})
 
 
 def about(request):

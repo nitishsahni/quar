@@ -10,6 +10,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     # the application page
     path('internships/apply/<int:post_id>', views.apply, name='apply'),
+    path('apply/<int:post_id>', views.apply, name='apply'),
     # the internships list
     path('internships', views.internships, name='internships'),
     # the single internship

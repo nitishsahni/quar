@@ -44,6 +44,7 @@ class Company(models.Model):
     industry = models.CharField(verbose_name="Industry", max_length=2, choices=industryChoices)
     typeOfBusiness = models.CharField(max_length=50, verbose_name="Type of Business")
     website = models.URLField()
+    companyLogo = models.ImageField(default="images/115x115.gif")
     phone = models.BigIntegerField()
     password = forms.CharField(widget=forms.PasswordInput)
 
@@ -78,10 +79,21 @@ class Apply(models.Model):
     rj = "RJ"
     statusChoices = [(qr, 'Quar.in'), (wc, 'With company'), (ap, 'Approved'), (rj, 'Rejected')]
 
+    hs = 'HS'
+    ba = 'BA'
+    ma = 'MA'
+    yearSchoolChoices = [(hs, 'High School'), (ba, 'Bachelors'), (ma, 'Masters')]
+
     class Meta:
         verbose_name_plural = "Applications"
 
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    institution = models.CharField(verbose_name="High School", max_length=50)
+    qualification = models.CharField(max_length=2, choices=yearSchoolChoices)
+    dob = models.DateField()
+    phone = models.BigIntegerField()
+    #student = models.ForeignKey(Student, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     resume = models.FileField()
     cover = models.FileField()

@@ -2,16 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c002990e-7bd0-4616-9d9d-4b75b58d7e82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/student/track.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/master/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/master/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/master/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/master/migrations/0002_auto_20200414_1625.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/master/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/master/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/master/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/master/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/master/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/master/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quar/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/quar/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/company/companydashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/company/companydashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/signups/logIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signups/logIn.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/student/apply.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/apply.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/student/internships.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/internships.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/student/singleInternship.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/singleInternship.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/student/track.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/track.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,9 +87,9 @@
     <state x="1856" y="-162" key="com.intellij.ide.util.TipDialog/0.0.1440.900/1440.-433.1600.900@1440.-433.1600.900" timestamp="1586583434979" />
     <state x="374" y="271" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1586689368155" />
     <state x="374" y="273" key="com.intellij.ide.util.TipDialog/0.23.1440.831@0.23.1440.831" timestamp="1586340140256" />
-    <state x="1905" y="-237" width="670" height="676" key="search.everywhere.popup" timestamp="1586522671891">
+    <state x="1905" y="-237" width="670" height="676" key="search.everywhere.popup" timestamp="1586941819661">
       <screen x="1440" y="-433" width="1600" height="900" />
     </state>
-    <state x="1905" y="-237" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/1440.-433.1600.900@1440.-433.1600.900" timestamp="1586522671891" />
+    <state x="1905" y="-237" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/1440.-433.1600.900@1440.-433.1600.900" timestamp="1586941819661" />
   </component>
 </project>

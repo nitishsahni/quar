@@ -33,10 +33,38 @@
     <div class="col-lg-4 col-xl-6"><h2>Hey Nitish! Complete the steps below to intern with {{post.company}}.</h2>
       <br>
 		<form method="POST">
-            {{form}}
-		<div class="form-group">
+            <div class="form-group"><label for="exampleInputEmail1">Full Name</label><br>
+            {{form.name}}</div><br>
+            <div class="form-group"><label for="exampleInputEmail1">Email</label><br>
+            {{form.email}}</div><br>
+            <div class="form-group"><label for="exampleInputEmail1">Instiution</label><br>
+            {{form.institution}}</div><br>
+            <div class="form-group"><label for="exampleInputEmail1">Qualification Level</label><br>
+            {{form.qualification}}</div><br>
+            <div class="form-group"><label for="exampleInputEmail1">Date of Birth</label><br>
+            {{form.dob}}</div><br>
+            <div class="form-group"><label for="exampleInputEmail1">Mobile Number</label><br>
+            {{form.phone}}</div><br>
+            <div class="form-group"><label for="exampleInputEmail1">Upload your resume*</label><br>
+            {{form.resume}}</div><br>
+            <div class="form-group"><label for="exampleInputPassword1">Upload a cover letter&nbsp;</label><br>
+            {{form.cover}}
+            <small id="password" class="form-text text-muted">This is to introduce yourself to an organization, demonstrate your interest, and motivate them to hire you.</small>
+            </div><br>
+            <div class="form-group"> <label for="exampleFormControlTextarea1">Tell us about your skills</label><br>
+            {{form.skills}}</div><br>
+            <div class="form-group"> <label for="college">Online presence</label><br>
+            {{form.presence}}
+            <small id="collegeHelp" class="form-text text-muted">This can be your web-portfolio, linkedin, github, etc.</small></div><br>
+
+            {{form.as_p}}
+
+
+
+
+	<!--	<div class="form-group">
     <label for="exampleInputEmail1">Upload your resume*</label>
-    <input type="file" class="form-control"> </div>
+    <input type="file" class="form-control" id="exampleInputEmail"> </div>
 			<div class="form-group">
     <label for="exampleInputPassword1">Upload a cover letter&nbsp;</label>
     <input type="file" class="form-control" id="exampleInputPassword1">
@@ -51,7 +79,7 @@
     <label for="college">Online presence</label>
     <input type="text" class="form-control" id="website" placeholder="www.linkedin.com/maclewin">
 	  <small id="collegeHelp" class="form-text text-muted">This can be your web-portfolio, linkedin, github, etc.</small> 
-  </div>
+  </div> --->
   <button type="submit" class="btn btn-primary">Apply!</button>
 			<small id="logIn" class="form-text text-muted">Your name, email ID, date of birth, and institution details will be sent as well, once you apply.</small>
 			<small id="logIn" class="form-text text-muted">Have a question? <a href="">Contact us.</a></small>
