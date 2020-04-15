@@ -37,6 +37,13 @@ def apply(request, post_id):
         if form.is_valid():
             application = form.save(commit=False)
             application.save()
+            #Send mail
+            applyTo = form.cleaned_data.get('post.company')
+            emailTo = form.cleaned_data.get('student.email')
+            subject = 'Thank you for applying to ' + applyTo
+            message = 'Now, you can track your internship application with the link quar.in/track/' + application.id
+            recepient = emailTo
+            EmailMessage(subject, message, to=recepient)
             return HttpResponse('Thank you for applying')
     else:
         form = ApplyForm()
@@ -45,7 +52,7 @@ def apply(request, post_id):
 def internships(request):
     latest_internship_list = Post.objects.all().order_by("-pk")[:5]
     context = {'latest_internship_list': latest_internship_list}
-    return render(request, 'internships.html', context)
+    return render(request, 'student/internships.html', context)
 
 
 def singleInternship(request, post_id):
@@ -56,9 +63,6 @@ def singleInternship(request, post_id):
 def about(request):
     return render(request, 'about.html')
 
-
-def login(request):
-    return render(request, 'signups/logIn.html')
 
 def signup(request):
     if request.method == 'POST':
@@ -95,7 +99,15 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
+
+def companyDashboard(request, company_id):
+    post = get_object_or_404(Post, pk=company_id)
+    render(request, 'signups/companydashboard.html')
+
+
+def track(request, apply_id):
+    apply = get_object_or_404(Apply, pk=apply_id)
+    return render(request, 'student/track.html', {'applyStatus': apply.status, 'applyName': apply.student.name})

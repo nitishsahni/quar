@@ -4,6 +4,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 
+
 urlpatterns = [
     # the home page
     path('', views.home, name='home'),
@@ -15,12 +16,12 @@ urlpatterns = [
     path('internships/<int:post_id>', views.singleInternship, name='singleInternship'),
     # the about page
     path('about', views.about, name="about"),
-    # the login page
-    path('login', views.login, name="login"),
     # the post form page
     path('post', views.post, name="post"),
+    # the track internship page
+    path('track/<int:apply_id>', views.track, name="track"),
 
-    path('login', auth_views.LoginView, {'template_name': 'signups/logIn.html'}, name='login'),
+    url(r'^login/$', auth_views.LoginView, name='login'),
 
     path('logout', auth_views.LogoutView, {'next_page': 'home.html'}, name='logout'),
 
@@ -28,5 +29,7 @@ urlpatterns = [
 
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.activate, name='activate'),
+
+
 
 ]

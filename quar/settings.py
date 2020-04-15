@@ -26,7 +26,7 @@ SECRET_KEY = '-o94sg=184^vqzslyrt*8293pi=dk30obik2d4(+19%pbvqs^!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'quar.in', 'quar.pythonanywhere.com']
 
 # Application definition
 

@@ -77,8 +77,10 @@ class Apply(models.Model):
     ap = 'AP'
     rj = "RJ"
     statusChoices = [(qr, 'Quar.in'), (wc, 'With company'), (ap, 'Approved'), (rj, 'Rejected')]
+
     class Meta:
         verbose_name_plural = "Applications"
+
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     resume = models.FileField()
