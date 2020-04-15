@@ -13,6 +13,8 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.template import RequestContext
+
 
 
 def home(request):
@@ -105,9 +107,8 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 @login_required
-def companyDashboard(request, company_id):
-    company = get_object_or_404(Post, pk=company_id)
-    render(request, 'signups/companydashboard.html')
+def companyDashboard(request):
+    return render(request, 'company/companydashboard.html')
 
 
 def track(request, apply_id):
@@ -116,8 +117,9 @@ def track(request, apply_id):
 
 @login_required
 def appliedDashboard(request):
-    applications = Apply.objects.filter(post__company__name=request.user.name)
-    return render(request, 'company/viewApplied.html', applications)
+    applications = Apply.objects.filter(post__company__email=request.user.email)
+    applications_dict = {'applications' : applications}
+    return render(request, 'company/viewApplied.html', applications_dict)
 
 @login_required
 def viewAppDetails(request, apply_id):

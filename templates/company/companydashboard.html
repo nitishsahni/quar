@@ -32,7 +32,7 @@
       </div>
     </nav>
 <br><br><br><br>
-    <h2 class="text-center">HI {{company.name}}, WELCOME TO YOUR DASHBOARD.</h2><br>
+    <h2 class="text-center">HI {{request.user.name}}, WELCOME TO YOUR DASHBOARD.</h2><br>
 <div class="container">
   <table class="table table-hover justify-content-center">
   <thead>
@@ -41,22 +41,22 @@
   </thead>
   <tbody>
     <tr>
-      <td align="center"><h1><a href="../post"><img src="images/home/PostGear.png" width="32" height="32" alt=""/>&nbsp;&nbsp;Post an Internship&nbsp;&nbsp;</a></h1>
+      <td align="center"><h1><a href="../post"><img src="{% static 'images/home/PostGear.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;Post an Internship&nbsp;&nbsp;</a></h1>
 		  <p>Get the brightest minds from top institutes around the world to help your organization achieve its goals.</p>
 	</td>
     </tr>
     <tr>
-      <td align="center"><h1><a href="#"><img src="images/home/LogInentry.png" width="32" height="32" alt=""/>&nbsp;&nbsp;Track Applications&nbsp;&nbsp;</a></h1>
+      <td align="center"><h1><a href="appliedDashboard"><img src="{% static 'images/home/AboutPeople.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;Track Applications&nbsp;&nbsp;</a></h1>
 	<p>View applicants, accept or decline applications for the internships you have posted easily through your inbox.</p>
 </td>
     </tr>
     <tr>
-		<td align="center"><h1><a href="#"><img src="images/home/TrackPaw.png" width="32" height="32" alt=""/>&nbsp;&nbsp;View Past Internships&nbsp;&nbsp;</a></h1>
+		<td align="center"><h1><a href="#"><img src="{% static 'images/home/TrackPaw.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;View Past Internships&nbsp;&nbsp;</a></h1>
 <p>View or make changes to internships you have posted earlier through our platform.</p>
 </td>
     </tr>
 	  <tr>
-		<td align="center"><h1><a href="#"><img src="images/home/AboutPeople.png" width="32" height="32" alt=""/>&nbsp;&nbsp;Edit your profile&nbsp;&nbsp;</a></h1>
+		<td align="center"><h1><a href="#"><img src="{% static 'images/home/LogInentry.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;Edit your profile&nbsp;&nbsp;</a></h1>
 		  <p>Edit or update  your company information.</p></td>
     </tr>
   </tbody>
