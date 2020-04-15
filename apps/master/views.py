@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from .models import *
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -18,7 +19,7 @@ def home(request):
     return render(request, 'home.html')
 
 
-#@login_required
+@login_required
 def post(request):
     form = PostForm(request.POST)
     if request.method == 'POST':
@@ -103,11 +104,23 @@ def activate(request, uidb64, token):
     else:
         return HttpResponse('Activation link is invalid!')
 
+@login_required
 def companyDashboard(request, company_id):
-    post = get_object_or_404(Post, pk=company_id)
+    company = get_object_or_404(Post, pk=company_id)
     render(request, 'signups/companydashboard.html')
 
 
 def track(request, apply_id):
     apply = get_object_or_404(Apply, pk=apply_id)
     return render(request, 'student/track.html', {'applyStatus': apply.status, 'applyName': apply.student.name})
+
+@login_required
+def appliedDashboard(request):
+    applications = Apply.objects.filter(post__company__name=request.user.name)
+    return render(request, 'company/viewApplied.html', applications)
+
+@login_required
+def viewAppDetails(request, apply_id):
+    apply = get_object_or_404(Apply, pk=apply_id)
+    return render(request, 'company/appDetails.html', {'apply' : apply})
+
