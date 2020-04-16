@@ -37,6 +37,7 @@ class Company(models.Model):
                         ,('CO', "Communications")
                         ,('FB', "Food and Beverage")
                         ,('RE', "Research")
+                        ,('OT', "Other")
                        ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, verbose_name="Company name")
@@ -58,7 +59,7 @@ class Post(models.Model):
     ma = 'MA'
     yearSchoolChoices = [(hs, 'High School'), (ba, 'Bachelors'), (ma, 'Masters')]
 
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    #company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     duration = models.CharField(max_length=50)
     location = models.CharField(default="Remote", max_length=50)
@@ -103,5 +104,3 @@ class Apply(models.Model):
 
     def __str__(self):
         return str(self.student) + " | " + str(self.post) + " | " + str(self.post.company)
-
-
