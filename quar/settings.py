@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-o94sg=184^vqzslyrt*8293pi=dk30obik2d4(+19%pbvqs^!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'quar.in', 'quar.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'quar.in', 'quar.pythonanywhere.com', 'www.quar.in']
 
 # Application definition
 
