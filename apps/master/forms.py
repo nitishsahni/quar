@@ -15,6 +15,7 @@ class SignupForm(UserCreationForm):
         , ('CO', "Communications")
         , ('FB', "Food and Beverage")
         , ('RE', "Research")
+        , ('OT', "Other")
                        ]
     email = forms.EmailField(max_length=200, help_text='Required')
     name = forms.CharField(max_length=50)
