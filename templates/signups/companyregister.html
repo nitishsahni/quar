@@ -43,36 +43,36 @@
 	<small id="nameHelp" class="form-text text-muted">This is what you will login with.</small>
    </div>
   <div class="form-group">
-    <label for="name">Company</label><br>
+    <label for="name">Company Name</label><br>
 	<small id="nameHelp" class="form-text text-muted">This name  will be displayed to students.</small>
-      {{form.name}}
+      {{companyform.name}}
    </div>
   <div class="form-group">
     <label for="college">Industry</label><br>
-      {{form.industry}}
+      {{companyform.industry}}
 	  <small id="collegeHelp" class="form-text text-muted">Choose the industry.
     </small>
   </div>
 	<div class="form-group">
     <label for="college">Type of business</label><br>
-        {{form.typeOfBusiness}}
+        {{companyform.typeOfBusiness}}
 	  <small id="collegeHelp" class="form-text text-muted">Add the type of your business. </small>
   </div>
 	<div class="form-group">
     <label for="college">Website</label><br>
-        {{form.website}}
+        {{companyform.website}}
 	  <small id="collegeHelp" class="form-text text-muted">If you do not have a website, add a link to a website where
 		students can read about your work.</small> 
   </div>
 	<div class="form-group">
     <label for="exampleInputEmail1">Email address</label><br>
-        {{form.email}}
+        {{companyform.email}}
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
 
 	<div class="form-group">
     <label for="exampleInputEmail1">Phone</label><br>
-        {{form.phone}}
+        {{companyform.phone}}
     <small id="emailHelp" class="form-text text-muted">We won't share your phone numnber with anyone else.</small>
     </div>
   <div class="form-group">
@@ -87,6 +87,9 @@
         <br>
             {% if form.errors %}
                 {{form.errors}}
+            {% endif %}
+            {% if companyform.errors %}
+                {{companyform.errors}}
             {% endif %}
   <button type="submit" class="btn btn-primary">Sign up</button>
 			<small id="logIn" class="form-text text-muted">Already have an account? <a href="">Log In?</a></small>
