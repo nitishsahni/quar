@@ -70,10 +70,14 @@ def about(request):
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
-        if form.is_valid():
+        company_form = CompanyForm(request.POST)
+        if form.is_valid() and company_form.is_valid():
             user = form.save(commit=False)
+            company = company_form.save(commit=False)
             user.is_active = False
+            company.user = user
             user.save()
+            company.save()
             current_site = get_current_site(request)
             mail_subject = 'Activate your Quar.in account.'
             message = render_to_string('signups/account_activation_email.html', {
@@ -82,7 +86,7 @@ def signup(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
-            to_email = form.cleaned_data.get('email')
+            to_email = company_form.cleaned_data.get('email')
             email = EmailMessage(
                         mail_subject, message, to=[to_email]
             )
@@ -90,7 +94,8 @@ def signup(request):
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignupForm()
-    return render(request, 'signups/companyregister.html', {'form': form})
+        company_form = CompanyForm(request.POST)
+    return render(request, 'signups/companyregister.html', {'form': form, 'companyform' : company_form})
 
 
 def activate(request, uidb64, token):

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.forms import ModelForm
 from .models import *
 
 class SignupForm(UserCreationForm):
@@ -18,14 +19,20 @@ class SignupForm(UserCreationForm):
         , ('OT', "Other")
                        ]
     email = forms.EmailField(max_length=200, help_text='Required')
-    name = forms.CharField(max_length=50)
-    industry = forms.CharField(widget=forms.Select(choices=industryChoices))
-    typeOfBusiness = forms.CharField(max_length=50)
-    website = forms.URLField()
-    phone = forms.IntegerField()
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2', 'name', 'industry', 'typeOfBusiness', 'website', 'phone')
+        fields = ('username', 'email', 'password1', 'password2')
+
+class CompanyForm(ModelForm):
+    # name = forms.CharField(max_length=50)
+    # companyLogo = models.ImageField(default="images/115x115.gif", verbose_name="Company Logo")
+    # industry = forms.CharField(widget=forms.Select(choices=industryChoices))
+    # typeOfBusiness = forms.CharField(max_length=50)
+    # website = forms.URLField()
+    # phone = forms.IntegerField()
+    class Meta:
+        model = Company
+        fields = ('name', 'email', 'industry', 'typeOfBusiness', 'website', 'phone', 'companyLogo')
 
 class PostForm(forms.ModelForm):
     class Meta:
