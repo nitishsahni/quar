@@ -59,7 +59,7 @@ class Post(models.Model):
     ma = 'MA'
     yearSchoolChoices = [(hs, 'High School'), (ba, 'Bachelors'), (ma, 'Masters')]
 
-    #company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, default=None, null=True)
     title = models.CharField(max_length=100)
     duration = models.CharField(max_length=50)
     location = models.CharField(default="Remote", max_length=50)
@@ -96,11 +96,11 @@ class Apply(models.Model):
     phone = models.BigIntegerField()
     #student = models.ForeignKey(Student, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    resume = models.FileField()
-    cover = models.FileField()
+    resume = models.FileField(upload_to='media')
+    cover = models.FileField(null=True)
     skills = models.TextField(max_length=500)
-    presence = models.URLField()
+    presence = models.URLField(null=True)
     status = models.CharField(max_length=2, choices=statusChoices, default='QR')
 
     def __str__(self):
-        return str(self.student) + " | " + str(self.post) + " | " + str(self.post.company)
+        return str(self.name) + " | " + str(self.post) + " | " + str(self.post.company)

@@ -23,10 +23,10 @@ def home(request):
 
 @login_required
 def post(request):
-    form = PostForm(request.POST)
     if request.method == 'POST':
+        form = PostForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save()
             post.save()
             return HttpResponse('Thank you for applying')
     else:
@@ -38,7 +38,7 @@ def apply(request, post_id):
     form = ApplyForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
-            application = form.save(commit=False)
+            application = form.save()
             application.save()
             #Send mail
             applyTo = form.cleaned_data.get('post.company')
@@ -49,6 +49,7 @@ def apply(request, post_id):
             EmailMessage(subject, message, to=recepient)
             return HttpResponse('Thank you for applying')
     else:
+        post = get_object_or_404(Post, pk=post_id)
         form = ApplyForm()
     return render(request, 'student/apply.html', {'form': form, 'post': post})
 
