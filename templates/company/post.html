@@ -48,6 +48,9 @@
 <button type="submit" class="btn btn-primary">Post&nbsp;</button>
 			<small id="logIn" class="form-text text-muted">Have a question? <a href="">Contact us.</a></small>
 			<br>
+            {% if form.errors %}
+                {{form.errors}}
+            {% endif %}
 </form>
     </div>
 

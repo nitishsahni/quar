@@ -30,9 +30,10 @@
 </div>
 	  <div class="row">
     <div class="col-lg-4 offset-xl-0 col-xl-3">&nbsp;</div>
-    <div class="col-lg-4 col-xl-6"><h2>Hey Nitish! Complete the steps below to intern with {{post.company}}.</h2>
+    <div class="col-lg-4 col-xl-6"><h2>Hey! Complete the steps below to intern with {{post.company}}.</h2>
       <br>
-		<form method="POST">
+		<form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="form-group"><label for="exampleInputEmail1">Full Name</label><br>
             {{form.name}}</div><br>
             <div class="form-group"><label for="exampleInputEmail1">Email</label><br>
@@ -77,6 +78,9 @@
     <input type="text" class="form-control" id="website" placeholder="www.linkedin.com/maclewin">
 	  <small id="collegeHelp" class="form-text text-muted">This can be your web-portfolio, linkedin, github, etc.</small>
   </div> --->
+            {% if form.errors %}
+                {{form.errors}}
+            {% endif %}
   <button type="submit" class="btn btn-primary">Apply!</button>
 			<small id="logIn" class="form-text text-muted">Your name, email ID, date of birth, and institution details will be sent as well, once you apply.</small>
 			<small id="logIn" class="form-text text-muted">Have a question? <a href="">Contact us.</a></small>

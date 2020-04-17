@@ -56,5 +56,5 @@ class PostForm(forms.ModelForm):
 class ApplyForm(forms.ModelForm):
     class Meta:
         model = Apply
-        fields = "__all__"
+        fields = ('name', 'email', 'institution', 'qualification', 'dob', 'phone', 'resume', 'cover', 'skills', 'presence')
 
