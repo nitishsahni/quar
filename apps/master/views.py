@@ -28,7 +28,7 @@ def post(request):
         if form.is_valid():
             post = form.save()
             post.save()
-            return HttpResponse('Thank you for applying')
+            return HttpResponse('Thank you for posting')
     else:
         form = PostForm()
     return render(request, 'company/post.html', {'form': form})

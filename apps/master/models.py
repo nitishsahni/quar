@@ -96,7 +96,7 @@ class Apply(models.Model):
     phone = models.BigIntegerField()
     #student = models.ForeignKey(Student, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    resume = models.FileField(upload_to='media')
+    resume = models.FileField(upload_to='resume/%Y/%m/%d')
     cover = models.FileField(null=True)
     skills = models.TextField(max_length=500)
     presence = models.URLField(null=True)
