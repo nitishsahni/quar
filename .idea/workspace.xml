@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c002990e-7bd0-4616-9d9d-4b75b58d7e82" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/master/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/master/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/master/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/master/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/master/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/master/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/master/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/master/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quar/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/quar/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +34,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates/company" />
       <recent name="$PROJECT_DIR$/templates/signups" />

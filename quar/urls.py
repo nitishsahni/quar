@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from apps.master import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
 from django.contrib.auth import views as auth_views
 
 

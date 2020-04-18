@@ -45,7 +45,7 @@ class Company(models.Model):
     industry = models.CharField(verbose_name="Industry", max_length=2, choices=industryChoices)
     typeOfBusiness = models.CharField(max_length=50, verbose_name="Type of Business")
     website = models.URLField()
-    companyLogo = models.ImageField(default="images/115x115.gif", verbose_name="Company Logo")
+    companyLogo = models.ImageField(default="images/115x115.gif", verbose_name="Company Logo", upload_to ='logos')
     phone = models.BigIntegerField()
     password = forms.CharField(widget=forms.PasswordInput)
 

@@ -34,11 +34,11 @@ def post(request):
     return render(request, 'company/post.html', {'form': form})
 
 def apply(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    form = ApplyForm(request.POST)
+    postObj = get_object_or_404(Post, pk=post_id)
+    form = ApplyForm(request.POST, request.FILES, {'post': postObj, })
     if request.method == 'POST':
         if form.is_valid():
-            application = form.save()
+            application = form.save(commit=False)
             application.save()
             #Send mail
             applyTo = form.cleaned_data.get('post.company')
@@ -49,9 +49,8 @@ def apply(request, post_id):
             EmailMessage(subject, message, to=recepient)
             return HttpResponse('Thank you for applying')
     else:
-        post = get_object_or_404(Post, pk=post_id)
-        form = ApplyForm()
-    return render(request, 'student/apply.html', {'form': form, 'post': post})
+        form = ApplyForm(request.POST, request.FILES, {'post': postObj, })
+    return render(request, 'student/apply.html', {'form': form, 'post': postObj})
 
 def internships(request):
     latest_internship_list = Post.objects.all().order_by("-pk")
@@ -71,7 +70,7 @@ def about(request):
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
-        company_form = CompanyForm(request.POST)
+        company_form = CompanyForm(request.POST, request.FILES)
         if form.is_valid() and company_form.is_valid():
             user = form.save(commit=False)
             company = company_form.save(commit=False)
