@@ -59,7 +59,7 @@ class Post(models.Model):
     ma = 'MA'
     yearSchoolChoices = [(hs, 'High School'), (ba, 'Bachelors'), (ma, 'Masters')]
 
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, default=None, null=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     duration = models.CharField(max_length=50)
     location = models.CharField(default="Remote", max_length=50)
@@ -97,7 +97,7 @@ class Apply(models.Model):
     #student = models.ForeignKey(Student, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     resume = models.FileField(upload_to='resume/%Y/%m/%d')
-    cover = models.FileField(null=True)
+    cover = models.FileField(null=True, upload_to='cover/%Y/%m/%d')
     skills = models.TextField(max_length=500)
     presence = models.URLField(null=True)
     status = models.CharField(max_length=2, choices=statusChoices, default='QR')
