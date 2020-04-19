@@ -1,4 +1,4 @@
-{%  load static  %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,8 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quar.in | Find Internships</title>
     <!-- Bootstrap -->
-    <link href="{% static 'css/bootstrap-4.4.1.css' %}" rel="stylesheet">
-  </head>
+    <link href="{% static '/css/bootstrap-4.4.1.css' %} " rel="stylesheet">
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap-4.4.1.js' %}"></script>  </head>
   <body>
 	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">Quar.in</a>
@@ -18,52 +22,76 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-			  <a class="nav-link" href="post">Post Internships</a> </li>
+			  <a class="nav-link" href="internships.html">Find Internships</a> </li>
 		  <li class="nav-item">
-            <a class="nav-link" href="">Track Applications</a> </li>
-			<li class="nav-item">
-            <a class="nav-link" href="#">View my Internships</a> </li>
-			<li class="nav-item">
-            <a class="nav-link" href="#">Edit Profile</a> </li>
+            <a class="nav-link" href="#">Post Internships</a> </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-<a class="btn btn-outline-danger" href="logout">Log Out</a>
+<a class="btn btn-outline-danger my-2 my-sm-0" href="logout">Log Out</a>
         </form>
       </div>
     </nav>
-<br><br><br><br>
-    <h2 class="text-center">HI {{request.user.name}}, WELCOME TO YOUR DASHBOARD.</h2><br>
-<div class="container">
-  <table class="table table-hover justify-content-center">
+<hr>
+    <h2 class="text-center">VIEW OR EDIT INTERNSHIP POSTS</h2>
+    <hr>
+  <div class="container">
+   <!--<div class="row">
+    <div class="col-lg-4"><div class="dropdown">
+  <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Location </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Separated link</a>
+  </div>
+</div></div>
+    <div class="col-lg-4"><div class="dropdown">
+  <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Duration </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Separated link</a>
+  </div>
+</div></div>
+    <div class="col-lg-4"><form>  <div class="input-group mb-2 mr-sm-2 col-xl-12" align="left">
+    <div class="input-group-prepend">
+      <div class="input-group-text">Search</div>
+    </div>
+    <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+  </div>
+</form>
+	  </div>
+</div>-->
+{% if posts %}
+<table class="table table-hover">
   <thead>
     <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Date</th>
+      <th scope="col">Location</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td align="center"><h1><a href="../post"><img src="{% static 'images/home/PostGear.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;Post an Internship&nbsp;&nbsp;</a></h1>
-		  <p>Get the brightest minds from top institutes around the world to help your organization achieve its goals.</p>
-	</td>
+  {% for post in posts %}
+   <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td><a href="../editPost/{{post_id}}">{{post.title}}</a></td>
+      <td>{{post.startDate}}</td>
+      <td>{{post.location}}</td>
     </tr>
-    <tr>
-      <td align="center"><h1><a href="appliedDashboard"><img src="{% static 'images/home/AboutPeople.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;Track Applications&nbsp;&nbsp;</a></h1>
-	<p>View applicants, accept or decline applications for the internships you have posted easily through your inbox.</p>
-</td>
-    </tr>
-    <tr>
-		<td align="center"><h1><a href="../postedDashboard"><img src="{% static 'images/home/TrackPaw.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;View Past Internships&nbsp;&nbsp;</a></h1>
-<p>View or make changes to internships you have posted earlier through our platform.</p>
-</td>
-    </tr>
-	  <tr>
-		<td align="center"><h1><a href="../editProfile"><img src="{% static 'images/home/LogInentry.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;Edit your profile&nbsp;&nbsp;</a></h1>
-		  <p>Edit or update  your company information.</p></td>
-    </tr>
+  {% endfor %}
   </tbody>
 </table>
-	<br><br>
-</div>
-	  
+      {% else %}
+    <p>You have not posted anything yet.</p>
+      {% endif %}
+  </div>
+<hr>
+
 	  <div class="text-white bg-dark p-4">
       <div class="row">
         <div class="col-6 col-md-8 col-lg-7">

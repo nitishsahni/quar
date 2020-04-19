@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col-md-8 col-sm-12">
           <div class="media">
-            <img class="mr-3" src="{{post.company.companyLogo}}" alt="Generic placeholder image" width="115" height="115">
+            <img class="mr-3" src="../media/{{post.company.companyLogo}}" alt="Generic placeholder image" width="115" height="115">
             <div class="media-body">
               <h5 class="mt-0">{{post.company}}</h5>
              {{post.description}}
@@ -110,7 +110,7 @@
               <h4>Requirements</h4>
             </div>
 </div>
-          <h5><span class="badge badge-secondary">Education Level</span></h5>
+          <h5><span class="badge badge-secondary">{{post.qualification}}</span></h5>
           <p>{{post.requirements}}</p>
         </div>
       </div>

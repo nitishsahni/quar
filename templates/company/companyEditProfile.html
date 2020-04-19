@@ -1,11 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quar.in | Company Sign Up</title>
-    <!-- Bootstrap -->
-    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quar.in</title>
+  <!-- Bootstrap -->
+	<link href="{% static '/css/bootstrap-4.4.1.css' %} " rel="stylesheet">
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap-4.4.1.js' %}"></script>
+
+  <link rel="stylesheet" href="{% static '../static/css/home.css' %}">
+  <link rel="stylesheet" href="{% static  '../static/css/fonts.css' %}">
+  <script src="{% static '../static/js/custom.js' %}"></script>
   </head>
   <body>
 	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,75 +41,77 @@
 </div>
 	  <div class="row">
     <div class="col-lg-4 col-xl-4">&nbsp;</div>
-    <div class="col-lg-4"><h2>Company Sign-Up</h2>
+    <div class="col-lg-4"><h2>Company Edit Profile</h2>
       <br>
-		<form>
+		<form type="POST">
+             <div class="form-group">
+    <label for="college">Old Password</label><br>
+      {{changePasswordForm.old_password}}
+  </div>
+             <div class="form-group">
+    <label for="college">New Password</label><br>
+      {{changePasswordForm.new_password1}}
+  </div>
+             <div class="form-group">
+    <label for="college">Confirm New Password</label><br>
+      {{changePasswordForm.new_password2}}
+  </div>
+                        {% if changePasswordForm.errors %}
+                {{changePasswordForm.errors}}
+            {% endif %}
+              <button type="submit" class="btn btn-primary">Change Password</button>
+        </form>
+                    <hr>
+
+        <form type="POST">
+                        {% csrf_token %}
+            <label for="name">Company Name</label><br>
+      {{companyform.name}}
+            	<small id="nameHelp" class="form-text text-muted">This name  will be displayed to students.</small>
+            <br>
   <div class="form-group">
-    <label for="name">Company Name</label>
-    <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Fund Yourself Inc." readonly>
-	<small id="nameHelp" class="form-text text-muted">This name  will be displayed to students.</small> 
-   </div>
-  <div class="form-group">
-    <label for="college">Industry</label>
-    <input type="text" class="form-control" id="college" placeholder="Dropdown here" readonly>
+    <label for="college">Industry</label><br>
+      {{companyform.industry}}
 	  <small id="collegeHelp" class="form-text text-muted">Choose the industry.
-</small> 
+    </small>
   </div>
 	<div class="form-group">
-    <label for="college">Type of business</label>
-    <input type="text" class="form-control" id="college" placeholder="Crowdfunding" readonly>
-	  <small id="collegeHelp" class="form-text text-muted">Add the type of your business. </small> 
+    <label for="college">Type of business</label><br>
+        {{companyform.typeOfBusiness}}
+	  <small id="collegeHelp" class="form-text text-muted">Add the type of your business. </small>
   </div>
 	<div class="form-group">
-    <label for="college">Website</label>
-    <input type="text" class="form-control" id="website" placeholder="www.fundyourself.com" readonly>
+    <label for="college">Website</label><br>
+        {{companyform.website}}
 	  <small id="collegeHelp" class="form-text text-muted">If you do not have a website, add a link to a website where
-		students can read about your work.</small> 
+		students can read about your work.</small>
   </div>
 	<div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="hr@fundyourself.com" readonly>
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> </div>
+    <label for="exampleInputEmail1">Email address</label><br>
+        {{companyform.email}}
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+
+    	<div class="form-group">
+    <label for="exampleInputEmail1">Company Logo</label><br>
+        {{companyform.companyLogo}}
+    <small id="emailHelp" class="form-text text-muted">This is completely optional.</small>
+    </div>
+
 	<div class="form-group">
-    <label for="exampleInputEmail1">Phone</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="9876543210" readonly>
-    <small id="emailHelp" class="form-text text-muted">We won't share your phone numnber with anyone else.</small> </div>
-			<div class="form-group">
-  <label for="exampleFormControlTextarea1">Add a description</label>
-    <textarea type="text" rows="3" class="form-control" id="phone" aria-describedby="phoneHelp" 
-			  placeholder="I have a strong passion for..."></textarea>
-    <small id="emailHelp" class="form-text text-muted">Try to keep it under 100 words - as concise as you can.</small> </div>
-			<div class="form-group">
-    <label for="exampleInputEmail1">Upload your logo</label>
-    <input type="file" class="form-control"> </div>
-			<div class="form-group">
-  <div class="form-group">
-    <label for="exampleInputPassword1">Old Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="********">
-	<small id="password" class="form-text text-muted">We recommend your password contains a number and special characters as well.</small> 
-		  </div>
-			  <div class="form-group">
-    <label for="exampleInputPassword1">New Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="********">
-	<small id="password" class="form-text text-muted">We recommend your password contains a number and special characters as well.</small> 
-		  </div>
-			  <div class="form-group">
-    <label for="exampleInputPassword1">Confirm Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="********">
-	<small id="password" class="form-text text-muted">We recommend your password contains a number and special characters as well.</small> 
-		  </div>
-  
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">I agree to the terms and conditions</label>
-	  
-  </div>
-  <button type="submit" class="btn btn-primary">Sign up</button>
-			<small id="logIn" class="form-text text-muted">Want to chnage something else? <a href="">Conact us.</a></small>
+    <label for="exampleInputEmail1">Phone</label><br>
+        {{companyform.phone}}
+    <small id="emailHelp" class="form-text text-muted">We won't share your phone numnber with anyone else.</small>
+    </div>
+        <br>
+            {% if companyform.errors %}
+                {{companyform.errors}}
+            {% endif %}
+  <button type="submit" class="btn btn-primary">Save Edits</button>
 			<br>
 </form>
 					
-
+<br>
 
 </div>
     <div class="col-lg-4 col-xl-5">

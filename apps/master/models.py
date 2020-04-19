@@ -99,7 +99,7 @@ class Apply(models.Model):
     resume = models.FileField(upload_to='resume/%Y/%m/%d')
     cover = models.FileField(null=True, upload_to='cover/%Y/%m/%d')
     skills = models.TextField(max_length=500)
-    presence = models.URLField(null=True)
+    presence = models.URLField(null=True, blank=True)
     status = models.CharField(max_length=2, choices=statusChoices, default='QR')
 
     def __str__(self):

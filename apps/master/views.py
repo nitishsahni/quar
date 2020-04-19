@@ -1,10 +1,11 @@
+from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import get_object_or_404
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, update_session_auth_hash
 from .forms import *
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
@@ -35,7 +36,7 @@ def post(request):
 
 def apply(request, post_id):
     postObj = get_object_or_404(Post, pk=post_id)
-    form = ApplyForm(request.POST, request.FILES, {'post': postObj, })
+    form = ApplyForm(request.POST, request.FILES, initial={'post': postObj, })
     if request.method == 'POST':
         if form.is_valid():
             application = form.save(commit=False)
@@ -49,7 +50,7 @@ def apply(request, post_id):
             EmailMessage(subject, message, to=recepient)
             return HttpResponse('Thank you for applying')
     else:
-        form = ApplyForm(request.POST, request.FILES, {'post': postObj, })
+        form = ApplyForm(request.POST, request.FILES, initial={'post': postObj, })
     return render(request, 'student/apply.html', {'form': form, 'post': postObj})
 
 def internships(request):
@@ -94,7 +95,7 @@ def signup(request):
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignupForm()
-        company_form = CompanyForm(request.POST)
+        company_form = CompanyForm(request.POST, request.FILES)
     return render(request, 'signups/companyregister.html', {'form': form, 'companyform' : company_form})
 
 
@@ -127,7 +128,56 @@ def appliedDashboard(request):
     return render(request, 'company/viewApplied.html', applications_dict)
 
 @login_required
+def postedDashboard(request):
+    posts = Post.objects.filter(company_id=request.user.company.id)
+    posts_dict = {'posts' : posts}
+    return render(request, 'company/viewPast.html', posts_dict)
+
+@login_required
 def viewAppDetails(request, apply_id):
     apply = get_object_or_404(Apply, pk=apply_id)
     return render(request, 'company/appDetails.html', {'apply' : apply})
 
+@login_required
+def companyDetail(request):
+    context = {}
+    context["form"] = Company.objects.get(id=request.user.company.id)
+    return render(request, "company/companyEditProfile.html", context)
+
+
+@login_required
+def companyEditProfile(request):
+    context = {}
+    obj = get_object_or_404(Company, id=request.user.company.id)
+
+    changePasswordForm = PasswordChangeForm(request.user, request.POST or None)
+    companyform = CompanyForm(request.POST or None, request.FILES or None, instance=obj)
+
+    if changePasswordForm.is_valid():
+        user = changePasswordForm.save()
+        update_session_auth_hash(request, user)
+        return HttpResponse("Your password has been changed.")
+
+    if companyform.is_valid():
+        companyform.save()
+        return redirect('detail')
+
+    context["companyform"] = companyform
+    context["changePasswordForm"] = changePasswordForm
+
+    return render(request, "company/companyEditProfile.html", context)
+
+def editSinglePost(request, post_id):
+    context = {}
+    obj = get_object_or_404(Post, id=post_id)
+
+    form = PostForm(request.POST or None, instance=obj)
+
+    if form.is_valid():
+        form.save()
+        return redirect('detail')
+
+    context["form"] = form
+    context["post_id"] = post_id
+
+    return render(request, "company/editPost.html", context)

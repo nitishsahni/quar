@@ -2,6 +2,9 @@ from django.urls import path
 from django.conf.urls import url
 from . import views
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 
 
@@ -32,9 +35,17 @@ urlpatterns = [
 
     path('appliedDashboard', views.appliedDashboard, name="appliedDashboard"),
 
-    path('appDetails/<int:apply_id>', views.viewAppDetails, name="appDetails"),
+    path('postedDashboard', views.postedDashboard, name="postedDashboard"),
+
+      path('editPost/<int:post_id>', views.editSinglePost, name="editPost"),
+
+      path('appDetails/<int:apply_id>', views.viewAppDetails, name="appDetails"),
+
+    path('editProfile', views.companyEditProfile, name='editProfile'),
+
+    path('detailProfile', views.companyDetail, name='detailProfile'),
 
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.activate, name='activate'),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
