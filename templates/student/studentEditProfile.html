@@ -31,60 +31,40 @@
     <div class="col-lg-4 col-xl-4">&nbsp;</div>
     <div class="col-lg-4"><h2>Student - Edit Profile</h2>
       <br>
-		<form>
-  <div class="form-group">
-    <label for="name">Full Name</label>
-    <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Mac Lewin" readonly>
-	<small id="nameHelp" class="form-text text-muted">Your full name, please.</small> 
-   </div>
-  <div class="form-group">
-    <label for="college">High School / College&nbsp;</label>
-    <input type="text" class="form-control" id="college" placeholder="UC Berkeley, United States" readonly>
-	  <small id="collegeHelp" class="form-text text-muted">Please do not forget to mention the country!</small> 
+        <form type="POST">
+             <div class="form-group">
+    <label for="college">Old Password</label><br>
+      {{changePasswordForm.old_password}}
   </div>
-	<div class="form-group">
-    <label for="college">Year</label>
-    <input type="text" class="form-control" id="college" placeholder="Freshman" readonly>
-	  <small id="collegeHelp" class="form-text text-muted">Please do not forget to mention the country!</small> 
+             <div class="form-group">
+    <label for="college">New Password</label><br>
+      {{changePasswordForm.new_password1}}
   </div>
-	<div class="form-group">
-    <label for="dateOfBirth">Date of Birth</label>
-    <input type="text" class="form-control" id="dateOfBirth" placeholder="DDMMYYYY" readonly>
-	<small id="dobHelp" class="form-text text-muted">Internships are generally offered to students over the age of 16.</small> 
+             <div class="form-group">
+    <label for="college">Confirm New Password</label><br>
+      {{changePasswordForm.new_password2}}
   </div>
-	<div class="form-group">
-    <label for="phone">Phone</label>
-    <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="9876543210" readonly>
-    <small id="emailHelp" class="form-text text-muted">We'll share your phone with the companies that you apply to for internships, 
-		nobody else.</small> </div>
-	<div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="maclewin@supermail.com" readonly>
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Old Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="********">
-	<small id="password" class="form-text text-muted">We recommend your password contains a number and special characters as well.</small> 
-		  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="********">
-	<small id="password" class="form-text text-muted">We recommend your password contains a number and special characters as well.</small> 
-		  </div>
-	<div class="form-group">
-    <label for="exampleInputPassword1">Confirm Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="********">
-	<small id="password" class="form-text text-muted">We recommend your password contains a number and special characters as well.</small> 
-		  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">I agree to terms and conditions</label>
-	  
-  </div>
-  <button type="submit" class="btn btn-primary">Save</button>  <button type="submit" class="btn btn-danger">Cancel</button>
+                        {% if changePasswordForm.errors %}
+                {{changePasswordForm.errors}}
+            {% endif %}
+              <button type="submit" class="btn btn-primary">Change Password</button>
+        </form>
+                    <hr>
 
-		  <small id="logIn" class="form-text text-muted">Want to edit something else? <a href="">Contact us.</a></small>
+				<form method="POST">
+            {% csrf_token %}
+           {% for field in form %}
+  <div class="form-group">
+    <label>{{field.label}}</label>
+    <div>{{field}}
+<br>  </div>  </div>
+      {% endfor %}
+<button type="submit" class="btn btn-primary">Post&nbsp;</button>
+			<small id="logIn" class="form-text text-muted">Have a question? <a href="">Contact us.</a></small>
 			<br>
+            {% if form.errors %}
+                {{form.errors}}
+            {% endif %}
 </form>
 					
 

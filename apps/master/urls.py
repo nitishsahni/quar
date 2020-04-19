@@ -11,41 +11,56 @@ from django.conf import settings
 urlpatterns = [
     # the home page
     path('', views.home, name='home'),
-    # the application page
-    path('internships/apply/<int:post_id>', views.apply, name='apply'),
-    path('apply/<int:post_id>', views.apply, name='apply'),
     # the internships list
     path('internships', views.internships, name='internships'),
     # the single internship
     path('internships/<int:post_id>', views.singleInternship, name='singleInternship'),
     # the about page
     path('about', views.about, name="about"),
-    # the post form page
-    path('post', views.post, name="post"),
     # the track internship page
-    path('track/<int:apply_id>', views.track, name="track"),
-
-    url(r'^login/$', auth_views.LoginView.as_view(template_name='signups/logIn.html'), name='login'),
+    path('login', views.login, name='login'),
 
     path('logout', auth_views.LogoutView.as_view(), {'next_page': 'home.html'}, name='logout'),
 
-    path('signup', views.signup, name='signup'),
-
-    path('dashboard', views.companyDashboard, name="dashboard"),
-
-    path('appliedDashboard', views.appliedDashboard, name="appliedDashboard"),
-
-    path('postedDashboard', views.postedDashboard, name="postedDashboard"),
-
-      path('editPost/<int:post_id>', views.editSinglePost, name="editPost"),
-
-      path('appDetails/<int:apply_id>', views.viewAppDetails, name="appDetails"),
-
-    path('editProfile', views.companyEditProfile, name='editProfile'),
-
-    path('detailProfile', views.companyDetail, name='detailProfile'),
-
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.activate, name='activate'),
+
+
+
+    path('companysignup', views.companySignup, name='companysignup'),
+
+    path('post', views.post, name="post"),
+
+    path('companydashboard', views.companyDashboard, name="companydashboard"),
+
+    path('companyappliedDashboard', views.appliedDashboard, name="companyappliedDashboard"),
+
+    path('companypostedDashboard', views.postedDashboard, name="companypostedDashboard"),
+
+    path('companyeditPost/<int:post_id>', views.editSinglePost, name="companyeditPost"),
+
+    path('companyappDetails/<int:apply_id>', views.companyViewAppDetails, name="companyappDetails"),
+
+    path('companteditProfile', views.companyEditProfile, name='companteditProfile'),
+
+    path('companydetailProfile', views.companyDetail, name='companydetailProfile'),
+
+
+
+    path('studentsignup', views.signupStudent, name='studentsignup'),
+
+    path('apply/<int:post_id>', views.apply, name='apply'),
+
+    path('studentdashboard', views.studentDashboard, name="studentdashboard"),
+
+    path('studentappliedDashboard', views.studentApplied, name="studentappliedDashboard"),
+
+    path('studenttrackDashboard/<int:apply_id>', views.track, name="studenttrackDashboard"),
+
+    path('studentappDetails/<int:apply_id>', views.studentViewAppDetails, name="studentappDetails"),
+
+    path('companteditProfile', views.studentEditProfile, name='companteditProfile'),
+
+    path('studentdetailProfile', views.studentDetail, name='studentdetailProfile'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

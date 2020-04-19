@@ -7,15 +7,16 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Student(models.Model):
-    hs = 'HS'
-    ba = 'BA'
-    ma = 'MA'
+    hs = 'High School'
+    ba = 'Bachelors'
+    ma = 'Masters'
     yearSchoolChoices = [(hs, 'High School'), (ba, 'Bachelors'), (ma, 'Masters')]
 
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     email = models.EmailField()
     highSchool = models.CharField(verbose_name="High School", max_length=50)
-    year = models.CharField(max_length=2, choices=yearSchoolChoices)
+    year = models.CharField(choices=yearSchoolChoices)
     dob = models.DateField()
     phone = models.BigIntegerField()
 
@@ -54,9 +55,9 @@ class Company(models.Model):
 
 
 class Post(models.Model):
-    hs = 'HS'
-    ba = 'BA'
-    ma = 'MA'
+    hs = 'High School'
+    ba = 'Bachelors'
+    ma = 'Masters'
     yearSchoolChoices = [(hs, 'High School'), (ba, 'Bachelors'), (ma, 'Masters')]
 
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
@@ -64,7 +65,7 @@ class Post(models.Model):
     duration = models.CharField(max_length=50)
     location = models.CharField(default="Remote", max_length=50)
     startDate = models.DateField(verbose_name="Start Date")
-    qualification = models.CharField(max_length=2, choices=yearSchoolChoices)
+    qualification = models.CharField(choices=yearSchoolChoices)
     stipend = models.BooleanField()
     description = models.TextField(max_length=2000)
     requirements = models.TextField(max_length=2000)
@@ -80,21 +81,10 @@ class Apply(models.Model):
     rj = "RJ"
     statusChoices = [(qr, 'Quar.in'), (wc, 'With company'), (ap, 'Approved'), (rj, 'Rejected')]
 
-    hs = 'HS'
-    ba = 'BA'
-    ma = 'MA'
-    yearSchoolChoices = [(hs, 'High School'), (ba, 'Bachelors'), (ma, 'Masters')]
-
     class Meta:
         verbose_name_plural = "Applications"
 
-    name = models.CharField(max_length=50)
-    email = models.EmailField()
-    institution = models.CharField(verbose_name="High School", max_length=50)
-    qualification = models.CharField(max_length=2, choices=yearSchoolChoices)
-    dob = models.DateField()
-    phone = models.BigIntegerField()
-    #student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     resume = models.FileField(upload_to='resume/%Y/%m/%d')
     cover = models.FileField(null=True, upload_to='cover/%Y/%m/%d')
@@ -103,4 +93,4 @@ class Apply(models.Model):
     status = models.CharField(max_length=2, choices=statusChoices, default='QR')
 
     def __str__(self):
-        return str(self.name) + " | " + str(self.post) + " | " + str(self.post.company)
+        return str(self.student.name) + " | " + str(self.post) + " | " + str(self.post.company)
