@@ -36,60 +36,64 @@
 	  <div class="row">
     <div class="col-lg-4 col-xl-4">&nbsp;</div>
     <div class="col-lg-4"><h2>Student Sign-Up</h2><br>
-		<form method="POST">
-            {% csrf_token %}
-  <div class="form-group">
-    <label for="name">Full Name</label>
-      {{form.name}}
-    <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Mac Lewin">
-	<small id="nameHelp" class="form-text text-muted">Your full name, please.</small> 
+
+
+
+		<form method="post">
+        {% csrf_token %}
+    <div class="form-group">
+    <label for="name">Username</label><br>
+        {{form.username}}
+	<small id="name" class="form-text text-muted">This is what you will login with.</small>
    </div>
   <div class="form-group">
-    <label for="college">High School / College&nbsp;</label>
-    <input type="text" class="form-control" id="college" placeholder="Hamilton College, United States">
-	  <small id="collegeHelp" class="form-text text-muted">Please do not forget to mention the country!</small> 
-  </div>
-	<div class="form-group">
-    <label for="college">Year</label>
-    <input type="text" class="form-control" id="college" placeholder="Dropdown here">
-	  <small id="collegeHelp" class="form-text text-muted">Please do not forget to mention the country!</small> 
-  </div>
-	<div class="form-group">
-    <label for="dateOfBirth">Date of Birth</label>
-    <input type="text" class="form-control" id="dateOfBirth" placeholder="DDMMYYYY">
-	<small id="dobHelp" class="form-text text-muted">Internships are generally offered to students over the age of 16.</small> 
-  </div>
-	<div class="form-group">
-    <label for="phone">Phone</label>
-    <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="9876543210">
-    <small id="emailHelp" class="form-text text-muted">We'll share your phone with the companies that you apply to for internships, 
-		nobody else.</small> </div>
-	<div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-                {{form.email}}
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="maclewin@supermail.com">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> </div>
+    <label for="name">Full Name</label><br>
+	<small id="nameHelp" class="form-text text-muted">This name  will be displayed to companies.</small>
+      {{studentform.name}}
+   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-                      {{form.password1}}
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="********">
-	<small id="password" class="form-text text-muted">We recommend your password contains a number and special characters as well.</small> 
-		  </div>
-
-              <div class="form-group">
-    <label for="exampleInputPassword1">Conform password</label>
-                      {{form.password2}}
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="********">
-	<small id="password" class="form-text text-muted">We recommend your password contains a number and special characters as well.</small>
-		  </div>
-  
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">I agree to terms and conditions</label>
-	  
+    <label for="college">Email</label><br>
+      {{studentform.email}}
+	  <small id="collegeHelp" class="form-text text-muted">We won't share this with anyone.
+    </small>
   </div>
-            {{form.errors}}
-  <input type="submit" name="Create User"><button type="submit" class="btn btn-primary">Sign up</button>
+	<div class="form-group">
+    <label for="college">Type of business</label><br>
+        {{studentform.highSchool}}
+	  <small id="collegeHelp" class="form-text text-muted">Add your institution. </small>
+  </div>
+	<div class="form-group">
+    <label for="college">Website</label><br>
+        {{studentform.year}}
+  </div>
+	<div class="form-group">
+    <label for="exampleInputEmail1">Date of birth</label><br>
+        {{studentform.dob}}
+    <small id="emailHelp" class="form-text text-muted">MM/DD/YYYY</small>
+    </div>
+
+    	<div class="form-group">
+    <label for="exampleInputEmail1">Phone</label><br>
+        {{studentform.phone}}
+    <small id="emailHelp" class="form-text text-muted">We won't share this with anyone.</small>
+    </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label><br>
+      {{form.password1}}
+      <small id="password" class="form-text text-muted">Letters, digits and @/./+/-/_ only.</small>
+		  </div>
+      <div class="form-group">
+    <label for="exampleInputPassword1">Confirm Password</label><br>
+        {{form.password2}}
+		  </div>
+        <br>
+            {% if form.errors %}
+                {{form.errors}}
+            {% endif %}
+            {% if studentform.errors %}
+                {{studentform.errors}}
+            {% endif %}
+  <button type="submit" class="btn btn-primary">Sign up</button>
 			<small id="logIn" class="form-text text-muted">Already have an account? <a href="">Log In?</a></small>
 			<br>
 </form>

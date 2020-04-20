@@ -17,7 +17,7 @@ class CompanyForm(ModelForm):
 class StudentForm(ModelForm):
     class Meta:
         model = Student
-        fields = '__all__'
+        fields = ('name', 'email', 'dob', 'year', 'phone', 'highSchool')
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -28,5 +28,5 @@ class PostForm(forms.ModelForm):
 class ApplyForm(forms.ModelForm):
     class Meta:
         model = Apply
-        fields = ('name', 'email', 'institution', 'qualification', 'dob', 'phone', 'resume', 'cover', 'skills', 'presence', 'post')
+        fields = "__all__"
 

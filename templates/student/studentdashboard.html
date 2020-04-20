@@ -20,11 +20,11 @@
           <li class="nav-item">
 			  <a class="nav-link" href="post">Post Internships</a> </li>
 		  <li class="nav-item">
-            <a class="nav-link" href="">Track Applications</a> </li>
+            <a class="nav-link" href="studenttrackDashboard">Track Applications</a> </li>
 			<li class="nav-item">
-            <a class="nav-link" href="#">View my Internships</a> </li>
+            <a class="nav-link" href="studentappliedDashboard">View my Internships</a> </li>
 			<li class="nav-item">
-            <a class="nav-link" href="#">Edit Profile</a> </li>
+            <a class="nav-link" href="companteditProfile">Edit Profile</a> </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
 <a class="btn btn-outline-danger" href="logout">Log Out</a>
@@ -42,22 +42,17 @@
   </thead>
   <tbody>
     <tr>
-      <td align="center"><h1><a href="../student/track"><img src="images/home/ApplyPlane.png" width="32" height="32" alt=""/>Track an Internship</a></h1>
-		  <p>Earn, learn and contribute, apply for internships through our portal.</p>
-	</td>
-    </tr>
-    <tr>
-      <td align="center"><h1><a href="../internships"><img src="images/home/TrackPaw.png" width="32" height="32" alt=""/>&nbsp;&nbsp;View Internships&nbsp;&nbsp;</a></h1>
+      <td align="center"><h1><a href="../internships"><img src="{% static 'images/home/TrackPaw.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;View Internships&nbsp;&nbsp;</a></h1>
 	<p>View internship offers from top companies from all over the world.</p>
 </td>
     </tr>
     <tr>
-		<td align="center"><h1><a href="../viewPastApplicationa"><img src="images/home/LogInentry.png" width="32" height="32" alt=""/>&nbsp;&nbsp;View Past Applications&nbsp;&nbsp;</a></h1>
+		<td align="center"><h1><a href="../studentappliedDashboard"><img src="{% static 'images/home/LogInentry.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;View Past Applications&nbsp;&nbsp;</a></h1>
 <p>Check out your past applications to various companies.</p>
 </td>
     </tr>
 	  <tr>
-		<td align="center"><h1><a href="../studentEditProfile"><img src="images/home/AboutPeople.png" width="32" height="32" alt=""/>&nbsp;&nbsp;Edit your profile&nbsp;&nbsp;</a></h1>
+		<td align="center"><h1><a href="../studenteditProfile"><img src="{% static 'images/home/AboutPeople.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;Edit your profile&nbsp;&nbsp;</a></h1>
 		  <p>Edit or update  your  information.</p></td>
     </tr>
   </tbody>

@@ -22,7 +22,11 @@
 		  <li class="nav-item">
             <a class="nav-link" href="about">About</a> </li>
         </ul>
-		<div><a href="login" class="btn btn-outline-success my-2 my-sm-0">Company Log In</a></div>
+          {% if user.is_authenticated %}
+		<div><a href="logout" class="btn btn-outline-danger my-2 my-sm-0">Log Out</a></div>
+          {% else %}
+          <div><a href="login" class="btn btn-outline-success my-2 my-sm-0">Log In</a></div>
+          {% endif %}
       </div>
     </nav>
 <hr>

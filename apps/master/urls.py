@@ -18,9 +18,9 @@ urlpatterns = [
     # the about page
     path('about', views.about, name="about"),
     # the track internship page
-    path('login', views.login, name='login'),
+    path('login', views.loginView, name='login'),
 
-    path('logout', auth_views.LogoutView.as_view(), {'next_page': 'home.html'}, name='logout'),
+    path('logout', auth_views.LogoutView.as_view(), {'next_page': 'home'}, name='logout'),
 
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.activate, name='activate'),
@@ -41,7 +41,7 @@ urlpatterns = [
 
     path('companyappDetails/<int:apply_id>', views.companyViewAppDetails, name="companyappDetails"),
 
-    path('companteditProfile', views.companyEditProfile, name='companteditProfile'),
+    path('companyeditProfile', views.companyEditProfile, name='companyeditProfile'),
 
     path('companydetailProfile', views.companyDetail, name='companydetailProfile'),
 
@@ -59,7 +59,7 @@ urlpatterns = [
 
     path('studentappDetails/<int:apply_id>', views.studentViewAppDetails, name="studentappDetails"),
 
-    path('companteditProfile', views.studentEditProfile, name='companteditProfile'),
+    path('studenteditProfile', views.studentEditProfile, name='studenteditProfile'),
 
     path('studentdetailProfile', views.studentDetail, name='studentdetailProfile'),
 

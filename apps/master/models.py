@@ -16,7 +16,7 @@ class Student(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
     highSchool = models.CharField(verbose_name="High School", max_length=50)
-    year = models.CharField(choices=yearSchoolChoices)
+    year = models.CharField(choices=yearSchoolChoices, max_length=15)
     dob = models.DateField()
     phone = models.BigIntegerField()
 
@@ -65,7 +65,7 @@ class Post(models.Model):
     duration = models.CharField(max_length=50)
     location = models.CharField(default="Remote", max_length=50)
     startDate = models.DateField(verbose_name="Start Date")
-    qualification = models.CharField(choices=yearSchoolChoices)
+    qualification = models.CharField(choices=yearSchoolChoices, max_length=15)
     stipend = models.BooleanField()
     description = models.TextField(max_length=2000)
     requirements = models.TextField(max_length=2000)

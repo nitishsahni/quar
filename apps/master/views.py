@@ -14,7 +14,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from django.template import RequestContext
+from .decorators import *
 
 
 
@@ -37,7 +37,6 @@ def about(request):
     return render(request, 'about.html')
 
 
-
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -51,15 +50,23 @@ def activate(request, uidb64, token):
     else:
         return HttpResponse('Activation link is invalid!')
 
-def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return redirect('companydashboard')
-    else:
-        return HttpResponse('Invalid login')
+def loginView(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user:
+            login(request, user)
+            try:
+                if user.company:
+                    return redirect('companydashboard')
+            except Company.DoesNotExist:
+                return redirect('studentdashboard')
+        else:
+            return HttpResponse("Invalid login")
+    return render(request, 'signups/login.html')
 
 #####################
 
@@ -94,10 +101,12 @@ def companySignup(request):
     return render(request, 'signups/companyregister.html', {'form': form, 'companyform' : company_form})
 
 @login_required
+@company_required
 def companyDashboard(request):
     return render(request, 'company/companydashboard.html')
 
 @login_required
+@company_required
 def post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -110,23 +119,28 @@ def post(request):
     return render(request, 'company/post.html', {'form': form})
 
 @login_required
+@company_required
 def appliedDashboard(request):
     applications = Apply.objects.filter(post__company__email=request.user.email)
     applications_dict = {'applications' : applications}
     return render(request, 'company/viewApplied.html', applications_dict)
 
+
 @login_required
+@company_required
 def postedDashboard(request):
     posts = Post.objects.filter(company_id=request.user.company.id)
     posts_dict = {'posts' : posts}
     return render(request, 'company/viewPast.html', posts_dict)
 
 @login_required
+@company_required
 def companyViewAppDetails(request, apply_id):
     apply = get_object_or_404(Apply, pk=apply_id)
     return render(request, 'company/appDetails.html', {'apply' : apply})
 
 @login_required
+@company_required
 def companyDetail(request):
     context = {}
     context["form"] = Company.objects.get(id=request.user.company.id)
@@ -134,6 +148,7 @@ def companyDetail(request):
 
 
 @login_required
+@company_required
 def companyEditProfile(request):
     context = {}
     obj = get_object_or_404(Company, id=request.user.company.id)
@@ -156,6 +171,7 @@ def companyEditProfile(request):
     return render(request, "company/companyEditProfile.html", context)
 
 @login_required
+@company_required
 def editSinglePost(request, post_id):
     context = {}
     obj = get_object_or_404(Post, id=post_id)
@@ -204,29 +220,34 @@ def signupStudent(request):
     else:
         form = SignupForm()
         student_form = StudentForm(request.POST, request.FILES)
-    return render(request, 'signups/studentregister.html', {'form': form, 'studentform' : student_form})
+    return render(request, 'signups/studentregister.html', {'form': form, 'studentform': student_form})
 
 @login_required
+@student_required
 def studentDashboard(request):
     return render(request, 'student/studentdashboard.html')
 
 @login_required
+@student_required
 def track(request, apply_id):
     apply = get_object_or_404(Apply, pk=apply_id)
     return render(request, 'student/track.html', {'applyStatus': apply.status, 'applyName': apply.student.name})
 
 @login_required
+@student_required
 def studentApplied(request):
     applications = Apply.objects.filter(student = request.user.student)
     applications_dict = {'applications' : applications}
     return render(request, 'student/viewApplied.html', applications_dict)
 
 @login_required
+@student_required
 def studentViewAppDetails(request, apply_id):
     apply = get_object_or_404(Apply, pk=apply_id)
     return render(request, 'student/appDetails.html', {'apply' : apply})
 
 @login_required
+@student_required
 def studentDetail(request):
     context = {}
     context["form"] = Student.objects.get(id=request.user.student.id)
@@ -234,9 +255,10 @@ def studentDetail(request):
 
 
 @login_required
+@student_required
 def studentEditProfile(request):
     context = {}
-    obj = get_object_or_404(Student, id=request.user.company.id)
+    obj = get_object_or_404(Student, id=request.user.student.id)
 
     changePasswordForm = PasswordChangeForm(request.user, request.POST or None)
     student_form = StudentForm(request.POST or None, request.FILES or None, instance=obj)
@@ -256,6 +278,7 @@ def studentEditProfile(request):
     return render(request, "student/studentEditProfile.html", context)
 
 @login_required
+@student_required
 def apply(request, post_id):
     postObj = get_object_or_404(Post, pk=post_id)
     form = ApplyForm(request.POST, request.FILES, initial={'post': postObj, })

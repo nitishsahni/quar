@@ -1,11 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quar.in | Student Sign Up</title>
-    <!-- Bootstrap -->
-    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quar.in</title>
+  <!-- Bootstrap -->
+	<link href="{% static '/css/bootstrap-4.4.1.css' %} " rel="stylesheet">
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap-4.4.1.js' %}"></script>
+
+  <link rel="stylesheet" href="{% static '../static/css/home.css' %}">
+  <link rel="stylesheet" href="{% static  '../static/css/fonts.css' %}">
+  <script src="{% static '../static/js/custom.js' %}"></script>
   </head>
   <body>
 	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
