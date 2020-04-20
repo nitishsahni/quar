@@ -34,18 +34,6 @@
       <br>
 		<form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="form-group"><label for="exampleInputEmail1">Full Name</label><br>
-            {{form.name}}</div><br>
-            <div class="form-group"><label for="exampleInputEmail1">Email</label><br>
-            {{form.email}}</div><br>
-            <div class="form-group"><label for="exampleInputEmail1">Instiution</label><br>
-            {{form.institution}}</div><br>
-            <div class="form-group"><label for="exampleInputEmail1">Qualification Level</label><br>
-            {{form.qualification}}</div><br>
-            <div class="form-group"><label for="exampleInputEmail1">Date of Birth</label><br>
-            {{form.dob}}</div><br>
-            <div class="form-group"><label for="exampleInputEmail1">Mobile Number</label><br>
-            {{form.phone}}</div><br>
             <div class="form-group"><label for="exampleInputEmail1">Upload your resume*</label><br>
             {{form.resume}}</div><br>
             <div class="form-group"><label for="exampleInputPassword1">Upload a cover letter&nbsp;</label><br>
@@ -57,8 +45,6 @@
             <div class="form-group"> <label for="college">Online presence</label><br>
             {{form.presence}}
             <small id="collegeHelp" class="form-text text-muted">This can be your web-portfolio, linkedin, github, etc.</small></div><br>
-
-
 
 	<!--	<div class="form-group">
     <label for="exampleInputEmail1">Upload your resume*</label>

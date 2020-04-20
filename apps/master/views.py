@@ -66,7 +66,7 @@ def loginView(request):
                 return redirect('studentdashboard')
         else:
             return HttpResponse("Invalid login")
-    return render(request, 'signups/login.html')
+    return render(request, 'signups/logIn.html')
 
 #####################
 
@@ -109,13 +109,14 @@ def companyDashboard(request):
 @company_required
 def post(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, {'company': request.user.company})
         if form.is_valid():
-            post = form.save()
+            post = form.save(commit=False)
+            post.company = request.user.company
             post.save()
             return HttpResponse('Thank you for posting')
     else:
-        form = PostForm()
+        form = PostForm(request.POST, {'company': request.user.company})
     return render(request, 'company/post.html', {'form': form})
 
 @login_required
@@ -281,19 +282,22 @@ def studentEditProfile(request):
 @student_required
 def apply(request, post_id):
     postObj = get_object_or_404(Post, pk=post_id)
-    form = ApplyForm(request.POST, request.FILES, initial={'post': postObj, })
+    student = request.user.student
+    form = ApplyForm(request.POST, request.FILES, {'post': postObj, 'student': student})
     if request.method == 'POST':
         if form.is_valid():
             application = form.save(commit=False)
+            application.post = postObj
+            application.student = student
             application.save()
             #Send mail
             applyTo = form.cleaned_data.get('post.company')
             emailTo = form.cleaned_data.get('student.email')
             subject = 'Thank you for applying to ' + applyTo
-            message = 'Now, you can track your internship at quar.in'
+            message = 'Now, you can track your internship at quar.in under the Track Applications Link on your dashboard'
             recepient = emailTo
             EmailMessage(subject, message, to=recepient)
             return HttpResponse('Thank you for applying')
     else:
-        form = ApplyForm(request.POST, request.FILES, initial={'post': postObj, })
+        form = ApplyForm(request.POST, request.FILES, {'post': postObj,'student': student})
     return render(request, 'student/apply.html', {'form': form, 'post': postObj})

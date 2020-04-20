@@ -22,11 +22,11 @@ class StudentForm(ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = "__all__"
+        fields = ('title', 'duration', 'qualification', 'startDate', 'stipend', 'location', 'description', 'requirements')
 
 
 class ApplyForm(forms.ModelForm):
     class Meta:
         model = Apply
-        fields = "__all__"
+        fields = ('resume', 'cover', 'skills', 'presence')
 
