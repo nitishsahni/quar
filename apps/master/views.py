@@ -228,7 +228,17 @@ def studentDashboard(request):
 @student_required
 def track(request, apply_id):
     apply = get_object_or_404(Apply, pk=apply_id)
-    return render(request, 'student/track.html', {'applyStatus': apply.status, 'applyName': apply.student.name})
+    context = {}
+    if (apply.status == "QR"):
+        context['applyStatus'] = "is currently being reviewed by Quar.in"
+    elif (apply.status == "WC"):
+        context['applyStatus'] = "is currently being reviewed by " + apply.post.company.name
+    elif (apply.status == "AP"):
+        context['applyStatus'] = "has been approved! Congratulations! Reach out to" + apply.post.company.name + "!"
+    elif (apply.status == "RJ"):
+        context['applyStatus'] = "has been rejected! Congratulations! We're sorry"
+    context['apply']  = apply
+    return render(request, 'student/track.html', context)
 
 @student_required
 def studentApplied(request):
@@ -239,7 +249,8 @@ def studentApplied(request):
 @student_required
 def studentViewAppDetails(request, apply_id):
     apply = get_object_or_404(Apply, pk=apply_id)
-    return render(request, 'student/appDetails.html', {'apply' : apply})
+    form = ApplyForm(instance=apply)
+    return render(request, 'student/appDetails.html', {'form' : form, 'apply': apply})
 
 @student_required
 def studentDetail(request):
@@ -294,5 +305,5 @@ def apply(request, post_id):
             email.send()
             return HttpResponse('Thank you for applying')
     else:
-        form = ApplyForm(request.POST, request.FILES, {'post': postObj,'student': student})
+        form = ApplyForm()
     return render(request, 'student/apply.html', {'form': form, 'post': postObj})

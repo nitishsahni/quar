@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quar.in | Find Internships</title>
+    <title>Quar.in | View my Applications</title>
     <!-- Bootstrap -->
     <link href="{% static '/css/bootstrap-4.4.1.css' %} " rel="stylesheet">
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -14,26 +14,34 @@
     <script src="{% static '/js/popper.min.js' %}"></script>
     <script src="{% static '/js/bootstrap-4.4.1.js' %}"></script>  </head>
   <body>
-	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Quar.in</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg navbar-light p-4">
+    <a class="navbar-brand" href="../studentdashboard">Quar.in</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-			  <a class="nav-link" href="internships.html">Find Internships</a> </li>
-		  <li class="nav-item">
-            <a class="nav-link" href="#">Post Internships</a> </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-<a class="btn btn-outline-danger my-2 my-sm-0" href="logout">Log Out</a>
-        </form>
-      </div>
-    </nav>
-<hr>
-    <h2 class="text-center">FIND INTERNSHIPS</h2>
-    <hr>
+    </button>
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"   style="color:#17a2b8">
+            {{request.user.student.name}}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+            <a class="dropdown-item" href="internships">Apply</a>
+            <a class="dropdown-item" href="../studentappliedDashboard">View applications</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="../studentdashboard">My account</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="logout" style="color:red">
+            Log out</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+    <h5 class="text-center" style="color:#17a2b8">VIEW APPLICATIONS</h5>
+    <br>
   <div class="container">
    <!--<div class="row">
     <div class="col-lg-4"><div class="dropdown">
@@ -70,19 +78,19 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
+      <th scope="col">Internship Title</th>
+      <th scope="col">Company</th>
       <th scope="col">Status</th>
     </tr>
   </thead>
   <tbody>
   {% for application in applications %}
-    <a href="../viewAppDetails"><tr>
+    <tr>
       <th scope="row">{{forloop.counter}}</th>
-      <td>{{application.name}}</td>
-      <td>{{application.email}}</td>
-      <td>{{application.status}}</td>
-    </tr></a>
+     <td> <a href="studentappDetails/{{application.id}}">{{application.post.title}}</a></td>
+      <td>{{application.post.company}}</td>
+      <td><a href="../studenttrack/{{application.id}}" style="color:#17a2b8">Track</a></td>
+    </tr>
   {% endfor %}
   </tbody>
 </table>

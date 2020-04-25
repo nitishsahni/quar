@@ -55,7 +55,7 @@ urlpatterns = [
 
     path('studentappliedDashboard', views.studentApplied, name="studentappliedDashboard"),
 
-    path('studenttrackDashboard/<int:apply_id>', views.track, name="studenttrackDashboard"),
+    path('studenttrack/<int:apply_id>', views.track, name="studenttrack"),
 
     path('studentappDetails/<int:apply_id>', views.studentViewAppDetails, name="studentappDetails"),
 

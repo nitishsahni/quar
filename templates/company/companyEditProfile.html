@@ -60,16 +60,16 @@
 		<form type="POST">
             {% csrf_token %}
              <div class="form-group">
-    <label for="college">Old Password</label><br>
+    <label for="old_password">Old Password</label><br>
       <input type="password" class="form-control" id="old_password" name="old_password" placeholder="********">
   </div>
              <div class="form-group">
-    <label for="college">New Password</label><br>
+    <label for="new_password1">New Password</label><br>
       <input type="password" class="form-control" id="new_password1" name="new_password1" placeholder="********">
          <small id="password" class="form-text text-muted">Letters, digits and @/./+/-/_ only.</small>
   </div>
              <div class="form-group">
-    <label for="college">Confirm New Password</label><br>
+    <label for="new_password2">Confirm New Password</label><br>
       <input type="password" class="form-control" id="new_password2" name="new_password2" placeholder="********">
   </div>
             {% if changePasswordForm.errors %}
@@ -86,7 +86,7 @@
                         {% csrf_token %}
 <div class="form-group">
     <label for="username">Username</label><br>
-        <input type="text" class="form-control" id="username" name="username" value="{{request.user.username}}">
+        <input type="text" class="form-control" id="username" name="username" value="{{request.user.username}}" readonly>
    </div>
   <div class="form-group">
     <label for="name">Company Name</label><br>

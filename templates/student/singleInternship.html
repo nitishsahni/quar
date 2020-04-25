@@ -7,15 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quar.in | {{post.title}} </title>
     <!-- Bootstrap -->
-    <link href="{% static '/css/bootstrap-4.4.1.css' %} " rel="stylesheet">
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static '/js/popper.min.js' %}"></script>
-    <script src="{% static '/js/bootstrap-4.4.1.js' %}"></script>
+    <link href="{% static 'css/bootstrap-4.4.1.css' %}" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'css/about.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'css/studentdashboard.css' %}">
+    <script src="../../static/js/jquery-3.4.1.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap-4.4.1.js' %}"></script>
+  </head>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  {% if user.is_authenticated %}
+   <nav class="navbar navbar-expand-lg navbar-light p-4">
+    <a class="navbar-brand" href="../studentdashboard">Quar.in</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"   style="color:#17a2b8">
+            {{request.user.student.name}}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+            <a class="dropdown-item" href="internships">Apply</a>
+            <a class="dropdown-item" href="../studentappliedDashboard">View applications</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="../studentdashboard">My account</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="logout" style="color:red">
+            Log out</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  {% else %}
+	   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="{{home}}">Quar.in</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -27,14 +58,14 @@
 		  <li class="nav-item">
             <a class="nav-link" href="about">About</a> </li>
         </ul>
-		<div><a href="login" class="btn btn-outline-success my-2 my-sm-0">Company Log In</a></div>
+          <div><a href="login" class="btn btn-outline-success my-2 my-sm-0">Log In</a></div>
       </div>
     </nav>
+  {% endif %}
   <div class="container">
-      <hr>
       <div class="row">
         <div class="col-6">
-          <h1>{{post.title}}</h1>
+          <h2>{{post.title}}</h2>
         </div>
         <div class="col-6">
           <p class="text-right"><a href="../apply/{{post.id}}">Apply</a></p>
@@ -66,22 +97,22 @@
       <hr>
       <div class="row">
         <div class="col-md-6 col-sm-12">
-          <h2>Details</h2>
+          <h3 style="color:#17a2b8">DETAILS</h3>
           <hr>
           <div class="row">
             <div class="col-6">
-              <h4>Start Date</h4>
+              <h4 >Start Date</h4>
             </div>
             <div class="col-6">
-              <h6 class="text-right"><span aria-hidden="true"></span>{{post.startDate}}</h6>
+              <h6 class="text-right" style="color:#17a2b8"><span aria-hidden="true" ></span>{{post.startDate}}</h6>
             </div>
           </div>
-<div class="row">
+    <div class="row">
         <div class="col-6">
               <h4>Duration</h4>
             </div>
             <div class="col-6">
-              <h6 class="text-right"><span aria-hidden="true"></span> {{post.duration}}</h6>
+              <h6 class="text-right" style="color:#17a2b8"><span aria-hidden="true"></span> {{post.duration}}</h6>
             </div>
           </div>
 			<div class="row">
@@ -89,7 +120,7 @@
               <h4>Location</h4>
             </div>
             <div class="col-6">
-              <h6 class="text-right"><span aria-hidden="true"></span>{{post.location}}</h6>
+              <h6 class="text-right" style="color:#17a2b8"><span aria-hidden="true"></span>{{post.location}}</h6>
             </div>
           </div>
 </div>
@@ -99,7 +130,7 @@
         <div class="col-md-6 col-sm-12">
           <div class="row">
             <div class="col-5">
-              <h4>Description</h4>
+              <h4 style="color:#17a2b8">DESCRIPTION</h4>
             </div>
 </div>
 <p>{{post.description}}</p>
@@ -107,7 +138,7 @@
         <div class="col-md-6 col-sm-12">
           <div class="row">
             <div class="col-5">
-              <h4>Requirements</h4>
+              <h4 style="color:#17a2b8">REQUIREMENTS</h4>
             </div>
 </div>
           <h5><span class="badge badge-secondary">{{post.qualification}}</span></h5>
@@ -116,7 +147,6 @@
       </div>
 <hr>
 </div>
-	  <hr>
     <div class="text-white bg-dark p-4">
       <div class="row">
         <div class="col-6 col-md-8 col-lg-7">

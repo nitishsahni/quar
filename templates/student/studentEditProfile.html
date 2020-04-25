@@ -1,62 +1,72 @@
-{% load static %}
+{%  load static  %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quar.in</title>
-  <!-- Bootstrap -->
-	<link href="{% static '/css/bootstrap-4.4.1.css' %} " rel="stylesheet">
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static '/js/popper.min.js' %}"></script>
-    <script src="{% static '/js/bootstrap-4.4.1.js' %}"></script>
-
-  <link rel="stylesheet" href="{% static '../static/css/home.css' %}">
-  <link rel="stylesheet" href="{% static  '../static/css/fonts.css' %}">
-  <script src="{% static '../static/js/custom.js' %}"></script>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quar.in | Edit Profile</title>
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap-4.4.1.css' %}" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'css/about.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'css/studentdashboard.css' %}">
+    <script src="../../static/js/jquery-3.4.1.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap-4.4.1.js' %}"></script>
   </head>
   <body>
-	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Quar.in</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light p-4">
+    <a class="navbar-brand" href="../studentdashboard">Quar.in</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-			  <a class="nav-link" href="internships.html">Find Internships</a> </li>
-		  <li class="nav-item">
-            <a class="nav-link" href="#">Post Internships</a> </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-		<a href="logIn.html" class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</a>
-        </form>
-      </div>
-    </nav>
-	  <div class="row"> <br><br>
+    </button>
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"   style="color:#17a2b8">
+            {{request.user.student.name}}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+            <a class="dropdown-item" href="internships">Apply</a>
+            <a class="dropdown-item" href="../studentappliedDashboard">View applications</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="../studentdashboard">My account</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="logout" style="color:red">
+            Log out</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+	  <div class="row"> <br>
 </div>
 	  <div class="row">
     <div class="col-lg-4 col-xl-4">&nbsp;</div>
-    <div class="col-lg-4"><h2>Student - Edit Profile</h2>
-      <br>
-        <form type="POST">
+
+    <div class="col-lg-4"><h5 style="color:#17a2b8">EDIT YOUR PROFILE</h5>
+      <hr>
+		<form type="POST">
+            {% csrf_token %}
              <div class="form-group">
-    <label for="college">Old Password</label><br>
-      {{changePasswordForm.old_password}}
+    <label for="old_password">Old Password</label><br>
+      <input type="password" class="form-control" id="old_password" name="old_password" placeholder="********">
   </div>
              <div class="form-group">
-    <label for="college">New Password</label><br>
-      {{changePasswordForm.new_password1}}
+    <label for="new_password1">New Password</label><br>
+      <input type="password" class="form-control" id="new_password1" name="new_password1" placeholder="********">
+         <small id="password" class="form-text text-muted">Letters, digits and @/./+/-/_ only.</small>
   </div>
              <div class="form-group">
-    <label for="college">Confirm New Password</label><br>
-      {{changePasswordForm.new_password2}}
+    <label for="new_password2">Confirm New Password</label><br>
+      <input type="password" class="form-control" id="new_password2" name="new_password2" placeholder="********">
   </div>
-                        {% if changePasswordForm.errors %}
+            {% if changePasswordForm.errors %}
                 {{changePasswordForm.errors}}
             {% endif %}
               <button type="submit" class="btn btn-primary">Change Password</button>
@@ -65,21 +75,45 @@
 
 				<form method="POST">
             {% csrf_token %}
-           {% for field in form %}
-  <div class="form-group">
-    <label>{{field.label}}</label>
-    <div>{{field}}
-<br>  </div>  </div>
-      {% endfor %}
-<button type="submit" class="btn btn-primary">Post&nbsp;</button>
-			<small id="logIn" class="form-text text-muted">Have a question? <a href="">Contact us.</a></small>
+    <div class="form-group">
+    <label for="username">Username</label><br>
+        <input type="text" class="form-control" id="username" name="username" value="{{request.user.username}}" readonly>
+        <small>You can not change your username.</small>
+   </div>
+    <div class="form-group">
+    <label for="name">Full Name</label><br>
+        <input type="text" class="form-control" id="name" name="name" value="{{request.user.student.name}}">
+   </div>
+    <div class="form-group">
+    <label for="email">Email</label><br>
+        <input type="email" class="form-control" id="email" name="email" value="{{request.user.student.email}}">
+   </div>
+    <div class="form-group">
+    <label>Date of Birth</label><br>
+        {{form.dob}}
+   </div>
+    <div class="form-group">
+    <label for="institution">Institution</label><br>
+        <input type="text" class="form-control" id="institution" name="institution" value="{{request.user.student.institution}}">
+   </div>
+    <div class="form-group">
+    <label>Year</label><br>
+    {{form.year}}
+    </div>
+
+    <div class="form-group">
+    <label for="phone">Phone</label><br>
+        <input type="tel" class="form-control" id="phone" name="phone" value="{{request.user.student.phone}}">
+   </div>
+
+<button type="submit" class="btn btn-primary">Save changes</button>
 			<br>
             {% if form.errors %}
                 {{form.errors}}
             {% endif %}
 </form>
 					
-
+<br>
 
 </div>
     <div class="col-lg-4 col-xl-5">
