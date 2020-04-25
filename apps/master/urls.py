@@ -20,7 +20,7 @@ urlpatterns = [
     # the track internship page
     path('login', views.loginView, name='login'),
 
-    path('logout', auth_views.LogoutView.as_view(), {'next_page': 'home'}, name='logout'),
+    path('logout', views.logoutView, name='logout'),
 
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         views.activate, name='activate'),

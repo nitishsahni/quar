@@ -15,7 +15,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     email = models.EmailField()
-    highSchool = models.CharField(verbose_name="High School", max_length=50)
+    institution = models.CharField(verbose_name="Institution", max_length=50)
     year = models.CharField(choices=yearSchoolChoices, max_length=15)
     dob = models.DateField()
     phone = models.BigIntegerField()

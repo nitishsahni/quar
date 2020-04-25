@@ -20,94 +20,110 @@
   <script src="{% static '../static/js/custom.js' %}"></script>
   </head>
   <body>
-	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Quar.in</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg navbar-light p-4">
+    <a class="navbar-brand" href="../companydashboard">Quar.in</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-			  <a class="nav-link" href="internships.html">Find Internships</a> </li>
-		  <li class="nav-item">
-            <a class="nav-link" href="#">Post Internships</a> </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-		<a href="logIn.html" class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</a>
-        </form>
-      </div>
-    </nav>
+    </button>
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"   style="color:#17a2b8">
+            {{request.user.company.name}}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+            <a class="dropdown-item" href="post">Post</a>
+            <a class="dropdown-item" href="companyappliedDashboard">View applicants</a>
+          <a class="dropdown-item" href="companypostedDashboard">View posts</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="../companydashboard">My account</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="logout" style="color:red">
+            Log out</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
 	  <div class="row"> <br>
 </div>
 	  <div class="row">
     <div class="col-lg-4 col-xl-4">&nbsp;</div>
-    <div class="col-lg-4"><h2>Company Edit Profile</h2>
-      <br>
+
+    <div class="col-lg-4"><h5 style="color:#17a2b8">EDIT YOUR PROFILE</h5>
+      <hr>
+
+
+
 		<form type="POST">
+            {% csrf_token %}
              <div class="form-group">
     <label for="college">Old Password</label><br>
-      {{changePasswordForm.old_password}}
+      <input type="password" class="form-control" id="old_password" name="old_password" placeholder="********">
   </div>
              <div class="form-group">
     <label for="college">New Password</label><br>
-      {{changePasswordForm.new_password1}}
+      <input type="password" class="form-control" id="new_password1" name="new_password1" placeholder="********">
+         <small id="password" class="form-text text-muted">Letters, digits and @/./+/-/_ only.</small>
   </div>
              <div class="form-group">
     <label for="college">Confirm New Password</label><br>
-      {{changePasswordForm.new_password2}}
+      <input type="password" class="form-control" id="new_password2" name="new_password2" placeholder="********">
   </div>
-                        {% if changePasswordForm.errors %}
+            {% if changePasswordForm.errors %}
                 {{changePasswordForm.errors}}
             {% endif %}
               <button type="submit" class="btn btn-primary">Change Password</button>
         </form>
                     <hr>
 
+
+
+
         <form type="POST">
                         {% csrf_token %}
-            <label for="name">Company Name</label><br>
-      {{companyform.name}}
-            	<small id="nameHelp" class="form-text text-muted">This name  will be displayed to students.</small>
-            <br>
+<div class="form-group">
+    <label for="username">Username</label><br>
+        <input type="text" class="form-control" id="username" name="username" value="{{request.user.username}}">
+   </div>
   <div class="form-group">
-    <label for="college">Industry</label><br>
+    <label for="name">Company Name</label><br>
+      <input type="text" class="form-control" id="name" name="name" value="{{request.user.company.name}}">
+   </div>
+  <div class="form-group">
+    <label>Industry</label><br>
       {{companyform.industry}}
-	  <small id="collegeHelp" class="form-text text-muted">Choose the industry.
-    </small>
   </div>
 	<div class="form-group">
-    <label for="college">Type of business</label><br>
-        {{companyform.typeOfBusiness}}
-	  <small id="collegeHelp" class="form-text text-muted">Add the type of your business. </small>
+    <label for="typeOfBusiness">Type of business</label><br>
+        <input type="text" class="form-control" id="typeOfBusiness" name="typeOfBusiness" value="{{request.user.company.typeOfBusiness}}">
   </div>
 	<div class="form-group">
     <label for="college">Website</label><br>
-        {{companyform.website}}
-	  <small id="collegeHelp" class="form-text text-muted">If you do not have a website, add a link to a website where
-		students can read about your work.</small>
+        <input type="url" class="form-control" id="website" name="website" value="{{request.user.company.website}}">
   </div>
 	<div class="form-group">
-    <label for="exampleInputEmail1">Email address</label><br>
-        {{companyform.email}}
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <label for="email">Email address</label><br>
+      <input type="email" class="form-control" id="email" name="email" value="{{request.user.company.email}}">
     </div>
 
     	<div class="form-group">
-    <label for="exampleInputEmail1">Company Logo</label><br>
+    <label>Company Logo</label><br>
         {{companyform.companyLogo}}
-    <small id="emailHelp" class="form-text text-muted">This is completely optional.</small>
     </div>
 
 	<div class="form-group">
-    <label for="exampleInputEmail1">Phone</label><br>
-        {{companyform.phone}}
-    <small id="emailHelp" class="form-text text-muted">We won't share your phone numnber with anyone else.</small>
+    <label for="phone">Phone</label><br>
+        <input type="tel" class="form-control" id="phone" name="phone" value="{{request.user.company.phone}}">
     </div>
         <br>
             {% if companyform.errors %}
                 {{companyform.errors}}
             {% endif %}
-  <button type="submit" class="btn btn-primary">Save Edits</button>
+   <button type="submit" class="btn btn-info mb-1">Save Edits</button>
+
 			<br>
 </form>
 					

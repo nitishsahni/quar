@@ -8,31 +8,45 @@
     <title>Quar.in | Find Internships</title>
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap-4.4.1.css' %}" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'css/about.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'css/studentdashboard.css' %}">
+    <script src="../../static/js/jquery-3.4.1.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap-4.4.1.js' %}"></script>
   </head>
   <body>
-	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Quar.in</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light p-4">
+    <a class="navbar-brand" href="#">Quar.in</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-			  <a class="nav-link" href="post">Post Internships</a> </li>
-		  <li class="nav-item">
-            <a class="nav-link" href="">Track Applications</a> </li>
-			<li class="nav-item">
-            <a class="nav-link" href="#">View my Internships</a> </li>
-			<li class="nav-item">
-            <a class="nav-link" href="#">Edit Profile</a> </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-<a class="btn btn-outline-danger" href="logout">Log Out</a>
-        </form>
-      </div>
-    </nav>
-<br><br><br><br>
-    <h2 class="text-center">HI {{request.user.company.name}}, WELCOME TO YOUR DASHBOARD.</h2><br>
+    </button>
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"   style="color:#17a2b8">
+            {{request.user.company.name}}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+            <a class="dropdown-item" href="post">Post</a>
+            <a class="dropdown-item" href="companyappliedDashboard">View applicants</a>
+          <a class="dropdown-item" href="companypostedDashboard">View posts</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="../companydashboard">My account</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="logout" style="color:red">
+            Log out</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<br><br><br>
+    <h5 class="text-center">WELCOME TO YOUR DASHBOARD.</h5><br>
 <div class="container">
   <table class="table table-hover justify-content-center">
   <thead>
@@ -41,22 +55,22 @@
   </thead>
   <tbody>
     <tr>
-      <td align="center"><h1><a href="../post"><img src="{% static 'images/home/PostGear.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;Post an Internship&nbsp;&nbsp;</a></h1>
+      <td align="center"><h1><img src="{% static 'images/home/PostGear.png' %}" width="32" height="32" alt=""/>  <a href="../post">Post an Internship</a></h1>
 		  <p>Get the brightest minds from top institutes around the world to help your organization achieve its goals.</p>
 	</td>
     </tr>
     <tr>
-      <td align="center"><h1><a href="appliedDashboard"><img src="{% static 'images/home/AboutPeople.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;Track Applications&nbsp;&nbsp;</a></h1>
+      <td align="center"><h1><img src="{% static 'images/home/AboutPeople.png' %}" width="32" height="32" alt=""/>  <a href="../companyappliedDashboard">Track Applications</a></h1>
 	<p>View applicants, accept or decline applications for the internships you have posted easily through your inbox.</p>
 </td>
     </tr>
     <tr>
-		<td align="center"><h1><a href="../postedDashboard"><img src="{% static 'images/home/TrackPaw.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;View Past Internships&nbsp;&nbsp;</a></h1>
+		<td align="center"><h1><img src="{% static 'images/home/TrackPaw.png' %}" width="32" height="32" alt=""/>  <a href="../companypostedDashboard">View Past Internships</a></h1>
 <p>View or make changes to internships you have posted earlier through our platform.</p>
 </td>
     </tr>
 	  <tr>
-		<td align="center"><h1><a href="../editProfile"><img src="{% static 'images/home/LogInentry.png' %}" width="32" height="32" alt=""/>&nbsp;&nbsp;Edit your profile&nbsp;&nbsp;</a></h1>
+		<td align="center"><h1><img src="{% static 'images/home/LogInentry.png' %}" width="32" height="32" alt=""/>  <a href="../companyeditProfile">Edit your profile</a></h1>
 		  <p>Edit or update  your company information.</p></td>
     </tr>
   </tbody>

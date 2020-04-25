@@ -35,10 +35,14 @@
           <a class="nav-link" href="internships">Find Internships</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="about">About</a>
+          <a class="nav-link" href="post">Post Internships</a>
         </li>
       </ul>
-      <div><a href="login" class="btn btn-outline-info my-2 my-sm-0">Company Log In</a></div>
+      {% if user.is_authenticated %}
+		<div><a href="logout" class="btn btn-outline-danger my-2 my-sm-0">Log Out</a></div>
+          {% else %}
+          <div><a href="login" class="btn btn-outline-info my-2 my-sm-0">Log In</a></div>
+          {% endif %}
     </div>
   </nav>
 
@@ -48,11 +52,10 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <h1 class="p-2 boldify">Quar.in</h1>
-            <h3 class="p-2 increase-line-height">Don’t just Quarantine, <mark>Quarintern!</mark></h3>
-            <p class="pb-4">Work from home Internships for high school and college students.</p>
-            <p><a class="btn btn-info btn-lg" href="internships" role="button">Find The Right Internship For You</a>
-            </p>
+            <h4 style="font-size: 30px;" class="p-2">Quar.in</h4>
+            <h2 class="p-2" style="font-size: 60px;">Don’t just Quarantine, Quarintern!</h2><br>
+            <p style="font-size: 20px;"class="pb-4">Work from home Internships for high school and college students.</p>
+            <p><a class="btn btn-info btn-lg" href="internships" role="button">Find The Right Internship For You</a></p>
             <button onclick="doScroll()" id="none">
               <img id="down-button" class="pt-3" src="https://img.icons8.com/android/24/000000/expand-arrow.png" />
             </button>
@@ -71,99 +74,49 @@
     <section>
       <div class="container mt-2">
         <div class="row">
-          <div class="col-md-4 col-12">
+          <div class="col-md-4 col-12"><a href="studentdashboard" style="color:black">
             <ul id="image-list" class="list-unstyled">
               <div class="padder">
                 <li class="media">
                   <img class="mr-3 pb-2" src="{% static 'images/home/ApplyPlane.png' %}" alt="Generic placeholder image">
                   <div class="media-body">
-                    <h5 class="mt-0 mb-1 boldify">Apply</h5>
+                    <h5 class="mt-0 mb-1" style="color:#17a2b8">Students</h5>
                     There is a desire of hardworking students to contribute and engage themselves in constructive work,
                     though remotely.
                   </div>
                 </li>
               </div>
-            </ul>
+            </ul></a>
           </div>
-          <div class="col-md-4 col-12">
+          <div class="col-md-4 col-12"><a href="companydashboard" style="color:black">
             <ul class="list-unstyled">
               <div class="padder">
                 <li class="media">
-                  <img class="mr-3 pb-2" src="{% static 'images/home/PostGear.png' %}" alt="Generic placeholder image">
+                  <img class="mr-3 pb-2" src="{% static 'images/home/TrackPaw.png' %}" alt="Generic placeholder image">
                   <div class="media-body">
-                    <h5 class="mt-0 mb-1 boldify">Post an internship</h5>
+                    <h5 class="mt-0 mb-1" style="color:#17a2b8">Companies</h5>
                     Many businesses are facing huge losses, and are unable to afford a contribution of thought,
                     creativity
                     and support, that may help them in the long run.
                   </div>
                 </li>
               </div>
-            </ul>
+            </ul></a>
           </div>
-          <div class="col-md-4 col-12">
+          <div class="col-md-4 col-12"><a href="about" style="color:black">
             <ul class="list-unstyled">
               <div class="padder">
                 <li class="media">
-                  <img class="mr-3 pb-2" src="{% static 'images/home/LogInentry.png' %}" alt="Generic placeholder image">
+                  <img class="mr-3 pb-2" src="{% static 'images/home/AboutPeople.png' %}" alt="Generic placeholder image">
                   <div class="media-body">
-                    <h5 class="mt-0 mb-1 boldify">Company-driven</h5>
+                    <h5 class="mt-0 mb-1" style="color:#17a2b8">About us</h5>
                     Quar.in aims to bridge the gap between need for creative and capable minds by companies, and
                     motivated
                     college and high school students.
                   </div>
                 </li>
               </div>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container mt-2">
-        <div class="row">
-          <div class="col-md-4 col-12">
-            <ul class="list-unstyled">
-              <div class="padder">
-                <li class="media">
-                  <img class="mr-3 pb-2" src="{% static 'images/home/TrackPaw.png' %}" alt="Generic placeholder image">
-                  <div class="media-body">
-                    <h5 class="mt-0 mb-1 boldify">Track Internship Status</h5>
-                    Check if your internship application has been accepted! Use your unique intern ID to view your
-                    application status.
-                  </div>
-                </li>
-              </div>
-            </ul>
-          </div>
-          <div class="col-md-4 col-12">
-            <ul class="list-unstyled">
-              <div class="padder">
-                <li class="media">
-                  <img class="mr-3 pb-2" src="{% static 'images/home/contact.png' %}" alt="Generic placeholder image">
-                  <div class="media-body">
-                    <h5 class="mt-0 mb-1 boldify">Contact Us</h5>
-                    Reach out to us for any queries or for feedback. We would love to hear from you and hope to improve
-                    your
-                    experience with Quar.in.
-                  </div>
-                </li>
-              </div>
-            </ul>
-          </div>
-          <div class="col-md-4 col-12">
-            <ul class="list-unstyled">
-              <div class="padder">
-                <li class="media">
-                  <img class="mr-3 pb-2" src="{% static 'images/home/AboutPeople.png' %}" alt="Generic placeholder image">
-                  <div class="media-body">
-                    <h5 class="mt-0 mb-1 boldify">About Us</h5>
-                    Learn more about out the motivation behind Quar.in and learn more about out team. Do you have a
-                    question, here are some frequently asked questions.
-                  </div>
-                </li>
-              </div>
-            </ul>
+            </ul></a>
           </div>
         </div>
       </div>

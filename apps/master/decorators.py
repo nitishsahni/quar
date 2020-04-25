@@ -10,7 +10,7 @@ def student_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, log
     actual_decorator = user_passes_test(
         lambda u: u.is_active and u.student,
         login_url='login',
-        redirect_field_name='home'
+        redirect_field_name='login'
     )
     if function:
         return actual_decorator(function)

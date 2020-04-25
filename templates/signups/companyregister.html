@@ -7,88 +7,91 @@
     <title>Quar.in | Company Sign Up</title>
     <!-- Bootstrap -->
     <link href="{% static '/css/bootstrap-4.4.1.css' %} " rel="stylesheet">
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/js/jquery-3.4.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static '/js/popper.min.js' %}"></script>
-    <script src="{% static '/js/bootstrap-4.4.1.js' %}"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap-4.4.1.js"></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{{home}}">Quar.in</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg navbar-light p-4">
+    <a class="navbar-brand" href="../">Quar.in</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-			  <a class="nav-link" href="internships">Find Internships</a> </li>
-		  <li class="nav-item">
-            <a class="nav-link" href="about">About</a> </li>
-        </ul>
-		<div><a href="login" class="btn btn-outline-success my-2 my-sm-0">Company Log In</a></div>
-      </div>
-    </nav>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="../internships">Find Internships</a> </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../post">Post Internships</a> </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a href="../login" class="btn btn-outline-info my-2 my-sm-0">Log In</a>
+      </form>
+    </div>
+  </nav>
 	  <div class="row"> <br>
 </div>
 	  <div class="row">
     <div class="col-lg-4 col-xl-4">&nbsp;</div>
-    <div class="col-lg-4"><h2>Company Sign-Up</h2>
+    <div class="col-lg-4"><h2 style="color:#17a2b8">Company Sign-Up</h2>
       <br>
 		<form method="post" enctype="multipart/form-data">
         {% csrf_token %}
     <div class="form-group">
-    <label for="name">Username</label><br>
-        {{form.username}}
-	<small id="name" class="form-text text-muted">This is what you will login with.</small>
+    <label for="username">Username</label><br>
+        <input type="text" class="form-control" id="username" name="username" placeholder="FundYourselfInc">
+	<small id="usernameHelper" class="form-text text-muted">This is what you will login with.</small>
    </div>
   <div class="form-group">
     <label for="name">Company Name</label><br>
-	<small id="nameHelp" class="form-text text-muted">This name  will be displayed to students.</small>
-      {{companyform.name}}
+      <input type="text" class="form-control" id="name" name="name" placeholder="Fund Yourself Inc.">
+      	<small id="nameHelp" class="form-text text-muted">This name  will be displayed to students.</small>
+
    </div>
   <div class="form-group">
-    <label for="college">Industry</label><br>
+    <label>Industry</label><br>
       {{companyform.industry}}
-	  <small id="collegeHelp" class="form-text text-muted">Choose the industry.
-    </small>
+	  <small id="industryHelp" class="form-text text-muted">Choose the industry.</small>
   </div>
 	<div class="form-group">
-    <label for="college">Type of business</label><br>
-        {{companyform.typeOfBusiness}}
-	  <small id="collegeHelp" class="form-text text-muted">Add the type of your business. </small>
+    <label for="typeOfBusiness">Type of business</label><br>
+        <input type="text" class="form-control" id="typeOfBusiness" name="typeOfBusiness" placeholder="Crowdfunding services">
+	  <small id="typeOfBusinessHelp" class="form-text text-muted">Add the type of your business. </small>
   </div>
 	<div class="form-group">
     <label for="college">Website</label><br>
-        {{companyform.website}}
-	  <small id="collegeHelp" class="form-text text-muted">If you do not have a website, add a link to a website where
-		students can read about your work.</small> 
+        <input type="url" class="form-control" id="website" name="website" placeholder="http://www.fundyourself.in">
+	  <small id="websiteHelp" class="form-text text-muted">Add a link to a website where
+		students can read about your work.</small>
   </div>
 	<div class="form-group">
-    <label for="exampleInputEmail1">Email address</label><br>
-        {{companyform.email}}
+    <label for="email">Email address</label><br>
+      <input type="email" class="form-control" id="email" name="email" placeholder="support@fundyourself.in">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
 
     	<div class="form-group">
-    <label for="exampleInputEmail1">Company Logo</label><br>
+    <label>Company Logo</label><br>
         {{companyform.companyLogo}}
-    <small id="emailHelp" class="form-text text-muted">This is completely optional.</small>
+    <small id="logoHelp" class="form-text text-muted">Adding a logo is optional.</small>
     </div>
 
 	<div class="form-group">
-    <label for="exampleInputEmail1">Phone</label><br>
-        {{companyform.phone}}
-    <small id="emailHelp" class="form-text text-muted">We won't share your phone numnber with anyone else.</small>
+    <label for="phone">Phone</label><br>
+        <input type="tel" class="form-control" id="phone" name="phone" placeholder="9876543210">
+    <small id="emailHelp" class="form-text text-muted">We will share this number with applicants.</small>
     </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label><br>
-      {{form.password1}}
+    <label for="password">Password</label><br>
+      <input type="password" class="form-control" id="password1" name="password1" placeholder="********">
       <small id="password" class="form-text text-muted">Letters, digits and @/./+/-/_ only.</small>
 		  </div>
       <div class="form-group">
-    <label for="exampleInputPassword1">Confirm Password</label><br>
-        {{form.password2}}
+    <label for="password2">Confirm Password</label><br>
+        <input type="password" class="form-control" id="password2" name="password2" placeholder="********">
 		  </div>
         <br>
             {% if form.errors %}
@@ -97,8 +100,8 @@
             {% if companyform.errors %}
                 {{companyform.errors}}
             {% endif %}
-  <button type="submit" class="btn btn-primary">Sign up</button>
-			<small id="logIn" class="form-text text-muted">Already have an account? <a href="">Log In?</a></small>
+   <button type="submit" class="btn btn-info mb-1">Sign up</button>
+			<small id="logIn" class="form-text text-muted">Already have an account? <a href="../login" style="color:#17a2b8">Log In?</a></small>
 			<br>
 </form>
 					

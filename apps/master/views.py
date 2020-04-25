@@ -1,8 +1,6 @@
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import get_object_or_404
-from .models import *
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.contrib.auth import logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, update_session_auth_hash
@@ -52,7 +50,11 @@ def activate(request, uidb64, token):
 
 def loginView(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        try:
+            if request.user.company:
+                return redirect('companydashboard')
+        except Company.DoesNotExist:
+            return redirect('studentdashboard')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -67,6 +69,10 @@ def loginView(request):
         else:
             return HttpResponse("Invalid login")
     return render(request, 'signups/logIn.html')
+
+def logoutView(request):
+    logout(request)
+    return redirect('home')
 
 #####################
 
@@ -97,15 +103,13 @@ def companySignup(request):
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignupForm()
-        company_form = CompanyForm(request.POST, request.FILES)
+        company_form = CompanyForm()
     return render(request, 'signups/companyregister.html', {'form': form, 'companyform' : company_form})
 
-@login_required
 @company_required
 def companyDashboard(request):
     return render(request, 'company/companydashboard.html')
 
-@login_required
 @company_required
 def post(request):
     if request.method == 'POST':
@@ -116,31 +120,27 @@ def post(request):
             post.save()
             return HttpResponse('Thank you for posting')
     else:
-        form = PostForm(request.POST, {'company': request.user.company})
+        form = PostForm()
     return render(request, 'company/post.html', {'form': form})
 
-@login_required
 @company_required
 def appliedDashboard(request):
-    applications = Apply.objects.filter(post__company__email=request.user.email)
+    applications = Apply.objects.filter(post__company=request.user.company)
     applications_dict = {'applications' : applications}
     return render(request, 'company/viewApplied.html', applications_dict)
 
 
-@login_required
 @company_required
 def postedDashboard(request):
     posts = Post.objects.filter(company_id=request.user.company.id)
     posts_dict = {'posts' : posts}
     return render(request, 'company/viewPast.html', posts_dict)
 
-@login_required
 @company_required
 def companyViewAppDetails(request, apply_id):
     apply = get_object_or_404(Apply, pk=apply_id)
     return render(request, 'company/appDetails.html', {'apply' : apply})
 
-@login_required
 @company_required
 def companyDetail(request):
     context = {}
@@ -148,7 +148,6 @@ def companyDetail(request):
     return render(request, "company/companyEditProfile.html", context)
 
 
-@login_required
 @company_required
 def companyEditProfile(request):
     context = {}
@@ -171,7 +170,6 @@ def companyEditProfile(request):
 
     return render(request, "company/companyEditProfile.html", context)
 
-@login_required
 @company_required
 def editSinglePost(request, post_id):
     context = {}
@@ -220,34 +218,29 @@ def signupStudent(request):
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignupForm()
-        student_form = StudentForm(request.POST, request.FILES)
+        student_form = StudentForm()
     return render(request, 'signups/studentregister.html', {'form': form, 'studentform': student_form})
 
-@login_required
 @student_required
 def studentDashboard(request):
     return render(request, 'student/studentdashboard.html')
 
-@login_required
 @student_required
 def track(request, apply_id):
     apply = get_object_or_404(Apply, pk=apply_id)
     return render(request, 'student/track.html', {'applyStatus': apply.status, 'applyName': apply.student.name})
 
-@login_required
 @student_required
 def studentApplied(request):
     applications = Apply.objects.filter(student = request.user.student)
     applications_dict = {'applications' : applications}
     return render(request, 'student/viewApplied.html', applications_dict)
 
-@login_required
 @student_required
 def studentViewAppDetails(request, apply_id):
     apply = get_object_or_404(Apply, pk=apply_id)
     return render(request, 'student/appDetails.html', {'apply' : apply})
 
-@login_required
 @student_required
 def studentDetail(request):
     context = {}
@@ -255,7 +248,6 @@ def studentDetail(request):
     return render(request, "student/studentEditProfile.html", context)
 
 
-@login_required
 @student_required
 def studentEditProfile(request):
     context = {}
@@ -278,7 +270,6 @@ def studentEditProfile(request):
 
     return render(request, "student/studentEditProfile.html", context)
 
-@login_required
 @student_required
 def apply(request, post_id):
     postObj = get_object_or_404(Post, pk=post_id)
@@ -291,12 +282,16 @@ def apply(request, post_id):
             application.student = student
             application.save()
             #Send mail
-            applyTo = form.cleaned_data.get('post.company')
-            emailTo = form.cleaned_data.get('student.email')
+            applyTo = postObj.company.name
+            emailTo = student.email
             subject = 'Thank you for applying to ' + applyTo
-            message = 'Now, you can track your internship at quar.in under the Track Applications Link on your dashboard'
-            recepient = emailTo
-            EmailMessage(subject, message, to=recepient)
+            message = render_to_string('student/apply_mail.html',{
+                'name': request.user.student.name,
+                'company': postObj.company.name,
+                'post': postObj.title,
+            })
+            email = EmailMessage(subject, message, to=[emailTo])
+            email.send()
             return HttpResponse('Thank you for applying')
     else:
         form = ApplyForm(request.POST, request.FILES, {'post': postObj,'student': student})
