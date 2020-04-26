@@ -44,6 +44,11 @@
       <h2>Log In</h2>
       <br>
       <form method="post">
+          {% for message in messages %}
+                    <div class="{{ message.tags }}">
+                        {{ message }}
+                    </div>
+            {% endfor %}
       	{% csrf_token %}
         <label for="username">Username</label><br>
         <input type="text" class="form-control" id="username" name="username" placeholder="maclewin"> <br><br>

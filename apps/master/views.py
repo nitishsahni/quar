@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import logout
@@ -44,9 +45,11 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        messages.error(request, 'Thank you for your email confirmation. Now you can login your account.')
+        return redirect('login')
     else:
-        return HttpResponse('Activation link is invalid!')
+        messages.error(request, 'Activation link is invalid! Please try creating an account again.')
+        return redirect('login')
 
 def loginView(request):
     if request.user.is_authenticated:
@@ -67,7 +70,8 @@ def loginView(request):
             except Company.DoesNotExist:
                 return redirect('studentdashboard')
         else:
-            return HttpResponse("Invalid login")
+            messages.error(request, 'Your username or password is incorrect.')
+            return redirect('login')
     return render(request, 'signups/logIn.html')
 
 def logoutView(request):
@@ -100,7 +104,8 @@ def companySignup(request):
                         mail_subject, message, to=[to_email]
             )
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            messages.success(request, 'Thank you for registering! Check your email to authenticate your profile.')
+            return redirect('login')
     else:
         form = SignupForm()
         company_form = CompanyForm()
@@ -118,7 +123,8 @@ def post(request):
             post = form.save(commit=False)
             post.company = request.user.company
             post.save()
-            return HttpResponse('Thank you for posting')
+            messages.success(request, 'Congratulations on posting an internship!')
+            return redirect('companydashboard')
     else:
         form = PostForm()
     return render(request, 'company/post.html', {'form': form})
@@ -215,7 +221,8 @@ def signupStudent(request):
                         mail_subject, message, to=[to_email]
             )
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            messages.success(request, 'Thank you for registering! Check your email to authenticate your profile.')
+            return redirect('login')
     else:
         form = SignupForm()
         student_form = StudentForm()
@@ -303,7 +310,8 @@ def apply(request, post_id):
             })
             email = EmailMessage(subject, message, to=[emailTo])
             email.send()
-            return HttpResponse('Thank you for applying')
+            messages.success(request, 'Thank you for applying for your internship! You will hear back soon!')
+            return redirect('studentdashboard')
     else:
         form = ApplyForm()
     return render(request, 'student/apply.html', {'form': form, 'post': postObj})

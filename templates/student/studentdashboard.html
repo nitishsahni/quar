@@ -43,7 +43,13 @@
       </ul>
     </div>
   </nav>
-<br><br><br>
+<br><br>
+            {% for message in messages %}
+                    <div class="{{ message.tags }}">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+  <br>
     <h5 class="text-center">WELCOME TO YOUR DASHBOARD.</h5><br>
 <div class="container">
   <table class="table table-hover justify-content-center">
