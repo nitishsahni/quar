@@ -30,3 +30,7 @@ class ApplyForm(forms.ModelForm):
         model = Apply
         fields = ('resume', 'cover', 'skills', 'presence')
 
+class ApplyFormCompany(forms.ModelForm):
+    class Meta:
+        model = Apply
+        fields = ('status',)

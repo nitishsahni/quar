@@ -23,7 +23,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light p-4">
-    <a class="navbar-brand" href="{{home}}">Quar.in</a>
+    <a class="navbar-brand active" href="">Quar.in</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -34,10 +34,14 @@
           <a class="nav-link" href="internships">Find Internships</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="about">About</a>
+          <a class="nav-link" href="post">Post Internships</a>
         </li>
       </ul>
-      <div><a href="login" class="btn btn-outline-info my-2 my-sm-0">Company Log In</a></div>
+      {% if user.is_authenticated %}
+		<div><a href="logout" class="btn btn-outline-danger my-2 my-sm-0">Log Out</a></div>
+          {% else %}
+          <div><a href="login" class="btn btn-outline-info my-2 my-sm-0">Log In</a></div>
+          {% endif %}
     </div>
   </nav>
 
@@ -55,7 +59,7 @@
           <div class="col-6">
           </div>
         </div>
-        <p>We aim to smoothen the entire process for securing an internship for students in India. From starting your
+        <p>We aim to smooth the entire process for securing an internship for students in India. From starting your
           application till your first day at work, Quar.in helps bridge the gaps in three stages:</p>
         <ul>
           <li>Apply for internships</li>
@@ -72,8 +76,8 @@
 
           </div>
         </div>
-        <p>It can often be tough to reach out to aspiring applicants or perhaps have a aggregated database of potnetial
-          interns to review systematically. Quar.in helps streamline this process providinng support in three simple
+        <p>It can often be tough to reach out to aspiring applicants or perhaps have a aggregated database of potential
+          interns to review systematically. Quar.in helps streamline this process providing support in three simple
           steps:</p>
         <ul>
           <li class="list-">Post their internships</li>
@@ -83,19 +87,17 @@
       </div>
     </div>
 
-    <h2 class="mt-5 mb-5 bold underline">About the founders</h2>
+    <h2 class="mt-5 mb-5 bold underline">Founders</h2>
 
     <div class="margin-center">
 
       <div class="row mb-3">
         <div class="col-md-6 col-sm-12 col-xl-4"><strong></strong>
           <div class="row">
-            <div class="col-5 col-xl-5">
               <h4>Kushagra Vashishta</h4>
-            </div>
           </div>
-          <p>Kushagra is an Economic Consulting major at the Kelley School of Business. He believes
-            that organisations have started putting more emphasis on inputs from and training of younger employees.</p>
+          <br><br>
+          <a href="https://www.linkedin.com/in/kushagravasishtha/">https://www.linkedin.com/in/kushagravasishtha/</a>
         </div>
         <div class="col-md-6 col-sm-12 col-xl-2"><img class="img-thumbnail" src="{% static '../static/images/about/KushagraPic.jpg' %}"
             width="150" height="150" alt="" />
@@ -105,12 +107,10 @@
       <div class="row mb-3">
         <div class="col-md-6 col-sm-12 col-xl-4"><strong></strong>
           <div class="row ">
-            <div class="col-5 col-xl-5">
               <h4>Nitish Sahni</h4>
-            </div>
           </div>
-          <p>Nitish is Electrical Engineering and Computer Science student at UC Berkeley. He feels that technoloy can
-            serve to build connectivity between aspiring students and companies, helping both grow in the process.</p>
+                    <br><br>
+          <a href="https://www.linkedin.com/in/nitishsahni/">https://www.linkedin.com/in/nitishsahni/</a>
         </div>
         <div class="col-md-6 col-sm-12 col-xl-2"><img class="img-thumbnail"
             src="{% static '../static/images/about/poppy-formal-light.png' %}" width="150" height="150" alt="" />
@@ -150,7 +150,6 @@
       </div>
       <div class="col-md-4 col-lg-5 col-6">
         <address>
-          <abbr title="Phone">P:</abbr> (+91) 704906447 or 8130920931 <br>
           <abbr title="Phone">@:</abbr>&nbsp;quarindia@gmail.com
           <a href="mailto:#"></a>
         </address>

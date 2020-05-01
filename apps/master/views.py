@@ -29,7 +29,9 @@ def internships(request):
 
 def singleInternship(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    return render(request, 'student/singleInternship.html', {'post': post})
+    industryChoicesDict = dict(Company.industryChoices)
+    industry = industryChoicesDict[post.company.industry]
+    return render(request, 'student/singleInternship.html', {'post': post, 'industry': industry})
 
 
 def about(request):
@@ -45,7 +47,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        messages.success(request, 'Thank you for your email confirmation. Now you can login your account.')
+        messages.success(request, "You can log in now.")
         return redirect('login')
     else:
         messages.error(request, 'Activation link is invalid! Please try creating an account again.')
@@ -104,12 +106,15 @@ def companySignup(request):
                         mail_subject, message, to=[to_email]
             )
             email.send()
-            messages.success(request, 'Thank you for registering! Check your email to authenticate your profile.')
-            return redirect('login')
+            return redirect('checkmail')
     else:
         form = SignupForm()
         company_form = CompanyForm()
     return render(request, 'signups/companyregister.html', {'form': form, 'companyform' : company_form})
+
+def checkMail(request):
+    return render(request, 'signups/checkyourmail.html')
+
 
 @company_required
 def companyDashboard(request):
@@ -145,7 +150,25 @@ def postedDashboard(request):
 @company_required
 def companyViewAppDetails(request, apply_id):
     apply = get_object_or_404(Apply, pk=apply_id)
-    return render(request, 'company/appDetails.html', {'apply' : apply})
+    form = ApplyFormCompany(request.POST or None, instance=apply)
+
+    if form.is_valid():
+        if request.POST.get('status'):
+            if request.POST.get('status') == "AP":
+                apply.status = "AP"
+                form.save()
+                messages.success(request, 'Application approved.')
+                return redirect('companydashboard')
+            else:
+                apply.status = request.POST.get('status')
+                form.save()
+                messages.success(request, 'Application status changed.')
+                return redirect('companydashboard')
+
+    form = ApplyFormCompany()
+    student_form = StudentForm()
+    return render(request, 'company/appDetails.html', {'form': form, 'apply': apply, 'student': student_form})
+
 
 @company_required
 def companyDetail(request):
@@ -165,11 +188,12 @@ def companyEditProfile(request):
     if changePasswordForm.is_valid():
         user = changePasswordForm.save()
         update_session_auth_hash(request, user)
-        return HttpResponse("Your password has been changed.")
+        messages.success(request, 'Password changed successfully.')
+        return redirect('companydashboard')
 
     if companyform.is_valid():
-        companyform.save()
-        return redirect('detail')
+        messages.success(request, 'Profile edited successfully.')
+        return redirect('companydashboard')
 
     context["companyform"] = companyform
     context["changePasswordForm"] = changePasswordForm
@@ -185,7 +209,8 @@ def editSinglePost(request, post_id):
 
     if form.is_valid():
         form.save()
-        return redirect('detail')
+        messages.success(request, 'Post edited successfully.')
+        return redirect('companydashboard')
 
     context["form"] = form
     context["post_id"] = post_id
@@ -221,7 +246,7 @@ def signupStudent(request):
                         mail_subject, message, to=[to_email]
             )
             email.send()
-            messages.success(request, 'Thank you for registering! Check your email to authenticate your profile.')
+            messages.success(request, "Thank you for registering! Check your email to authenticate your profile.")
             return redirect('login')
     else:
         form = SignupForm()
@@ -243,7 +268,7 @@ def track(request, apply_id):
     elif (apply.status == "AP"):
         context['applyStatus'] = "has been approved! Congratulations! Reach out to" + apply.post.company.name + "!"
     elif (apply.status == "RJ"):
-        context['applyStatus'] = "has been rejected! Congratulations! We're sorry"
+        context['applyStatus'] = "has been rejected! We're sorry."
     context['apply']  = apply
     return render(request, 'student/track.html', context)
 
@@ -277,11 +302,13 @@ def studentEditProfile(request):
     if changePasswordForm.is_valid():
         user = changePasswordForm.save()
         update_session_auth_hash(request, user)
-        return HttpResponse("Your password has been changed.")
+        messages.success(request, 'Password changed successfully.')
+        return redirect('studentdashboard')
 
     if student_form.is_valid():
         student_form.save()
-        return redirect('detail')
+        messages.success(request, 'Profile edited successfully.')
+        return redirect('studentdashboard')
 
     context["form"] = student_form
     context["changePasswordForm"] = changePasswordForm
