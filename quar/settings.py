@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-o94sg=184^vqzslyrt*8293pi=dk30obik2d4(+19%pbvqs^!'
+SECRET_KEY = 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'quar.wsgi.application'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'quarindia@gmail.com'
-EMAIL_HOST_PASSWORD = 'No time to die'
+EMAIL_HOST_PASSWORD = 
 EMAIL_PORT = 587
 
 
