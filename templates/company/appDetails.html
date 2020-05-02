@@ -56,6 +56,7 @@
             {% csrf_token %}
 {% csrf_token %}
             <div class="form-group"><label for="exampleInputEmail1">Full Name</label><br>
+<<<<<<< HEAD
             {{student.name}}</div><br>
             <div class="form-group"><label for="exampleInputEmail1">Email</label><br>
             {{student.email}}</div><br>
@@ -67,6 +68,19 @@
             {{student.dob}}</div><br>
             <div class="form-group"><label for="exampleInputEmail1">Mobile Number</label><br>
             {{student.phone}}</div><br>
+=======
+            {{apply.student.name}}</div><br>
+            <div class="form-group"><label for="exampleInputEmail1">Email</label><br>
+            {{apply.student.email}}</div><br>
+            <div class="form-group"><label for="exampleInputEmail1">Instiution</label><br>
+            {{apply.student.institution}}</div><br>
+            <div class="form-group"><label for="exampleInputEmail1">Qualification Level</label><br>
+            {{apply.student.qualification}}</div><br>
+            <div class="form-group"><label for="exampleInputEmail1">Date of Birth</label><br>
+            {{apply.student.dob}}</div><br>
+            <div class="form-group"><label for="exampleInputEmail1">Mobile Number</label><br>
+            {{apply.student.phone}}</div><br>
+>>>>>>> 0d6e2d98bb5fafd3f1338ef3617bad7702590da5
             <div class="form-group"><label for="exampleInputEmail1">Resume*</label><br>
             <a href="http://www.quar.in/media/{{apply.resume}}">Resume</a></div><br>
             <div class="form-group"><label for="exampleInputPassword1">Cover letter&nbsp;</label><br>
@@ -78,10 +92,17 @@
             {{apply.presence}}</div><br>
             <div class="form-group"> <label for="college">Status</label><br>
             {{form.status}}</div><br>
+<<<<<<< HEAD
 <button type="submit" class="btn btn-primary">Post</button>
       <small id="contact" class="form-text text-muted">Have a question? <a href="">Contact us.</a></small>
       <br>
 </form>
+=======
+            <button type="submit" class="btn btn-primary">Submit</button>
+        <small id="contact" class="form-text text-muted">Have a question? <a href="">Contact us.</a></small>
+        <br>
+    </form>
+>>>>>>> 0d6e2d98bb5fafd3f1338ef3617bad7702590da5
             {% if form.errors %}
                 {{form.errors}}
             {% endif %}

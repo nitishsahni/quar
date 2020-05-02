@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quar.in | About</title>
+  <title>Quar.in | Log In</title>
   <!-- Bootstrap -->
       <link rel="shortcut icon" type="image/png" href="{% static 'images/logo/favicon/favicon-32x32.png' %}"/>
 <link href="{% static '/css/bootstrap-4.4.1.css' %} " rel="stylesheet">
@@ -52,13 +52,15 @@
             {% endfor %}
       	{% csrf_token %}
         <label for="username">Username</label><br>
-        <input type="text" class="form-control" id="username" name="username" placeholder="maclewin"> <br><br>
+        <input type="text" class="form-control" id="username" name="username" placeholder="mclovin"> <br><br>
         <label for="password">Password</label><br>
        <input type="password" class="form-control" id="password" name="password" placeholder="********"><br><br>
 
 
         <button type="submit" class="btn btn-info" value="Login">Log In</button>
-        <small id="logIn" class="form-text text-muted mt-5">Don't have an account? Sign up as a <a href="../studentsignup">student</a> or sign up your <a href="../companysignup">company</a>?</small>
+        <small id="logIn" class="form-text text-muted mt-5">Don't have an account? Sign up as a <a href="../studentsignup">student</a> or set up your <a href="../companysignup">company</a> account.</small>
+        <br>
+        <small id="logIn" class="form-text text-muted mt-5">Please contact us at <a>quarindia@gmail.com</a>, if you're facing issues with signing up.</small>
         <br>
       </form>
     </div>
@@ -94,7 +96,6 @@
       </div>
       <div class="col-md-4 col-lg-5 col-6">
         <address>
-          <abbr title="Phone">P:</abbr> (+91) 704906447 or 8130920931 <br>
           <abbr title="Phone">@:</abbr>&nbsp;quarindia@gmail.com
           <a href="mailto:#"></a>
         </address>

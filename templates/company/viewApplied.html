@@ -91,12 +91,12 @@
   </thead>
   <tbody>
   {% for application in applications %}
-    <a href="../viewAppDetails"><tr>
+    <tr>
       <th scope="row">{{forloop.counter}}</th>
-      <td>{{application.student.name}}</td>
+      <td><a href="../companyappDetails/{{application.id}}">{{application.student.name}}</a></td>
       <td>{{application.student.email}}</td>
       <td>{{application.status}}</td>
-    </tr></a>
+    </tr>
   {% endfor %}
   </tbody>
 </table>
@@ -135,7 +135,6 @@
       </div>
       <div class="col-md-4 col-lg-5 col-6">
         <address>
-          <abbr title="Phone">P:</abbr> (+91) 704906447 or 8130920931 <br>
           <abbr title="Phone">@:</abbr>&nbsp;quarindia@gmail.com
           <a href="mailto:#"></a>
         </address>

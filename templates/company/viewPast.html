@@ -92,7 +92,7 @@
   {% for post in posts %}
    <tr>
       <th scope="row">{{forloop.counter}}</th>
-      <td><a href="../editPost/{{post_id}}">{{post.title}}</a></td>
+      <td><a href="../companyeditPost/{{post.id}}">{{post.title}}</a></td>
       <td>{{post.startDate}}</td>
       <td>{{post.location}}</td>
     </tr>
@@ -134,7 +134,6 @@
       </div>
       <div class="col-md-4 col-lg-5 col-6">
         <address>
-          <abbr title="Phone">P:</abbr> (+91) 704906447 or 8130920931 <br>
           <abbr title="Phone">@:</abbr>&nbsp;quarindia@gmail.com
           <a href="mailto:#"></a>
         </address>

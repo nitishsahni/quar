@@ -21,10 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-o94sg=184^vqzslyrt*8293pi=dk30obik2d4(+19%pbvqs^!'
+SECRET_KEY = 0
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'quar.in', 'quar.pythonanywhere.com', 'www.quar.in']
 
@@ -73,11 +73,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'quar.wsgi.application'
 
 # Email Authentication
+<<<<<<< HEAD
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.office365.com'
 EMAIL_HOST_USER = 'admin@quar.in'
 DEFAULT_FROM_EMAIL =z EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = 'NoTimeToDie!1'
+=======
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'quarindia@gmail.com'
+EMAIL_HOST_PASSWORD = 0
+>>>>>>> 0d6e2d98bb5fafd3f1338ef3617bad7702590da5
 EMAIL_PORT = 587
 EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
