@@ -29,6 +29,8 @@ urlpatterns = [
 
     path('companysignup', views.companySignup, name='companysignup'),
 
+    path ('checkmail', views.checkMail, name='checkmail'),
+
     path('post', views.post, name="post"),
 
     path('companydashboard', views.companyDashboard, name="companydashboard"),

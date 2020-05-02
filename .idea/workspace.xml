@@ -2,29 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c002990e-7bd0-4616-9d9d-4b75b58d7e82" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/signups/checkyourmail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/master/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/master/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/master/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/master/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/master/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/master/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quar/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/quar/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/company/appDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/company/appDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/company/companyEditProfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/company/companyEditProfile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/company/companydashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/company/companydashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/company/editPost.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/company/editPost.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/company/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/company/post.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/company/viewApplied.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/company/viewApplied.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/company/viewPast.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/company/viewPast.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/signups/companyregister.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signups/companyregister.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/signups/logIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signups/logIn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/signups/studentregister.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signups/studentregister.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/student/appDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/appDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/student/apply.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/apply.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/student/internships.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/internships.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/student/singleInternship.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/singleInternship.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/student/studentEditProfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/studentEditProfile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/student/studentdashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/studentdashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/student/track.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/track.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/student/viewApplied.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/viewApplied.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewPosted.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewPosted.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,22 +38,22 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/images/logo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/signups" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/static/images/logo" />
-      <recent name="$PROJECT_DIR$/templates/student" />
-      <recent name="$PROJECT_DIR$/templates" />
-      <recent name="$PROJECT_DIR$/static/css" />
-      <recent name="$PROJECT_DIR$/static" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates/company" />
       <recent name="$PROJECT_DIR$/templates/signups" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/templates/student" />
       <recent name="$PROJECT_DIR$/templates/misc" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/signups" />
+      <recent name="$PROJECT_DIR$/static/images/logo" />
+      <recent name="$PROJECT_DIR$/templates/student" />
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/static/css" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -98,12 +85,12 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="547" y="352" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/0.0.1440.900@0.0.1440.900" timestamp="1586344326038" />
-    <state x="374" y="271" key="com.intellij.ide.util.TipDialog" timestamp="1587793301012">
+    <state x="374" y="271" key="com.intellij.ide.util.TipDialog" timestamp="1588222416227">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="374" y="271" key="com.intellij.ide.util.TipDialog/0.0.1440.900/1440.-433.1600.900@0.0.1440.900" timestamp="1587793301012" />
+    <state x="374" y="271" key="com.intellij.ide.util.TipDialog/0.0.1440.900/1440.-433.1600.900@0.0.1440.900" timestamp="1588222416227" />
     <state x="1856" y="-162" key="com.intellij.ide.util.TipDialog/0.0.1440.900/1440.-433.1600.900@1440.-433.1600.900" timestamp="1586583434979" />
-    <state x="374" y="271" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1586967058057" />
+    <state x="374" y="271" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1587969324927" />
     <state x="374" y="273" key="com.intellij.ide.util.TipDialog/0.23.1440.831@0.23.1440.831" timestamp="1586340140256" />
     <state x="1905" y="-237" width="670" height="676" key="search.everywhere.popup" timestamp="1586945257112">
       <screen x="1440" y="-433" width="1600" height="900" />

@@ -21,7 +21,7 @@ class StudentForm(ModelForm):
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model = Post
+        model = PostZ
         fields = ('title', 'duration', 'qualification', 'startDate', 'stipend', 'location', 'description', 'requirements')
 
 
@@ -30,3 +30,7 @@ class ApplyForm(forms.ModelForm):
         model = Apply
         fields = ('resume', 'cover', 'skills', 'presence')
 
+class ApplyFormCompany(forms.ModelForm):
+    class Meta:
+        model = Apply
+        fields = ('status',)
