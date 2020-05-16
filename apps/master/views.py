@@ -192,6 +192,7 @@ def companyEditProfile(request):
         return redirect('companydashboard')
 
     if companyform.is_valid():
+        companyform.save()
         messages.success(request, 'Profile edited successfully.')
         return redirect('companydashboard')
 
@@ -326,7 +327,7 @@ def apply(request, post_id):
             application.post = postObj
             application.student = student
             application.save()
-            #Send mail
+            #Send mail1
             applyTo = postObj.company.name
             emailTo = student.email
             subject = 'Thank you for applying to ' + applyTo
